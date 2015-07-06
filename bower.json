@@ -1,0 +1,18 @@
+{
+  "name": "villa",
+  "version": "0.0.0",
+  "authors": [
+    "vilicvane <i@vilic.info>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
