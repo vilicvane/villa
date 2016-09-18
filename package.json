@@ -1,11 +1,32 @@
 {
   "name": "villa",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Promise utitlies for async/await-ready environment.",
+  "main": "bld/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "quick-test": "mocha",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha",
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vilic/villa.git"
+  },
+  "keywords": [],
+  "author": "vilicvane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vilic/villa/issues"
+  },
+  "homepage": "https://github.com/vilic/villa#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "coveralls": "^2.11.13",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.0.2",
+    "source-map-support": "^0.4.2",
+    "typescript": "^2.0.2"
+  }
 }
