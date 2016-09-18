@@ -88,17 +88,17 @@ try {
 
 /**
  * Create a promise for a `ChildProcess` object.
- * @param process - The process to listen on 'exit' and 'error' events for
- * fulfillment or rejection.
+ * @param process The process to listen on 'exit' and 'error' events for
+ *     fulfillment or rejection.
  */
 export function awaitable(process: ChildProcess): Promise<void>;
 /**
  * Create a promise for an event emitter.
- * @param emitter - The emitter to listen on 'error' event for rejection, and
- * given event types for fulfillment.
- * @param type - A string or an array of string of event types for fulfillment.
- * @param errorEmitters - Other emitters to listen on 'error' event for
- * rejection.
+ * @param emitter The emitter to listen on 'error' event for rejection, and
+ *     given event types for fulfillment.
+ * @param type A string or an array of string of event types for fulfillment.
+ * @param errorEmitters Other emitters to listen on 'error' event for
+ *     rejection.
  */
 export function awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>;
 export function awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>;
