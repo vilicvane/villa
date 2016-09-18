@@ -1,0 +1,10 @@
+/coverage/
+
+/bld/test/
+/src/
+/test/
+/typings/
+
+/tsconfig.json
+
+.*
