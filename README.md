@@ -1,6 +1,6 @@
 [![NPM Package](https://badge.fury.io/js/villa.svg)](https://www.npmjs.com/package/villa)
 [![Build Status](https://travis-ci.org/vilic/villa.svg)](https://travis-ci.org/vilic/villa)
-[![Coverage Status](https://coveralls.io/repos/vilic/villa/badge.svg?branch=master&service=github)](https://coveralls.io/github/vilic/villa?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/vilic/villa/badge.svg?branch=master)](https://coveralls.io/github/vilic/villa?branch=master)
 
 # Villa
 
