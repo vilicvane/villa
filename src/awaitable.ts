@@ -1,7 +1,7 @@
 import { ChildProcess } from 'child_process';
 import { EventEmitter } from 'events';
 
-type AwaitableCreator<T> = <T>(target: any, ...args: any[]) => Promise<T>;
+type AwaitableCreator<T> = <T>(target: any, ...args: any[]) => Promise<T> | undefined;
 
 let awaitableCreators = [] as AwaitableCreator<any>[];
 

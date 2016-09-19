@@ -6,6 +6,8 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
+        "strictNullChecks": true,
+        "stripInternal": true,
         "declaration": true,
         "sourceMap": true,
         "newLine": "LF",
