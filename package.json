@@ -14,7 +14,13 @@
         "type": "git",
         "url": "git+https://github.com/vilic/villa.git"
     },
-    "keywords": [],
+    "keywords": [
+        "async",
+        "await",
+        "utility",
+        "helper",
+        "collection"
+    ],
     "author": "vilicvane",
     "license": "MIT",
     "bugs": {
