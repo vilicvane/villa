@@ -1,4 +1,4 @@
-import { acall, NodeStyleCallback } from '../';
+import { call, NodeStyleCallback } from '../../';
 
 let testValue = {
     value: 'test value'
@@ -6,10 +6,10 @@ let testValue = {
 
 type TestValueType = typeof testValue;
 
-describe('Feature: acall', () => {
+describe('Feature: call', () => {
     context('Successful invocation', () => {
         it('Invoke successfully asynchronously', async () => {
-            let ret = acall<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
                 a.should.equal(123);
                 b.should.equal('abc');
 
@@ -27,7 +27,7 @@ describe('Feature: acall', () => {
         });
 
         it('Invoke successfully synchronously', async () => {
-            let ret = acall<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
                 a.should.equal(123);
                 b.should.equal('abc');
 
@@ -44,7 +44,7 @@ describe('Feature: acall', () => {
 
     context('Failed invocation', () => {
         it('Invoke failed asynchronously', async () => {
-            let ret = acall<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
                 a.should.equal(123);
                 b.should.equal('abc');
 
@@ -57,7 +57,7 @@ describe('Feature: acall', () => {
         });
 
         it('Invoke successfully synchronously', async () => {
-            let ret = acall<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
                 a.should.equal(123);
                 b.should.equal('abc');
 

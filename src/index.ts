@@ -1,5 +1,7 @@
-export * from './acall';
+export * from './array';
 export * from './awaitable';
-export * from './sleep';
+export * from './function';
+export * from './miscellaneous';
 
+export type Resolvable<T> = PromiseLike<T> | T;
 export type NodeStyleCallback<T> = (error?: any, value?: T) => void;

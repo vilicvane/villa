@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 import {
     awaitable
-} from '../';
+} from '../../';
 
 let testError = new Error();
 
