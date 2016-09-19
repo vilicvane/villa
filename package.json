@@ -1,7 +1,7 @@
 {
     "name": "villa",
-    "version": "0.2.0",
-    "description": "Promise utitlies for async/await-ready environment.",
+    "version": "0.2.1",
+    "description": "Promise utilities for async/await-ready environment.",
     "main": "bld/index.js",
     "typings": "bld/index.d.ts",
     "scripts": {

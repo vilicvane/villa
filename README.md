@@ -4,11 +4,11 @@
 
 # Villa
 
-Villa is a set of Promise utitlies for async/await-ready environment.
+Villa is a set of Promise utilities for async/await-ready environment.
 
 Villa is the successor of [ThenFail](https://github.com/vilic/thenfail) for async/await-ready
 environment. Unlike common Promise implementations with arsenal built on the
-Promise instances, Villa focuses on Promise utitlies that bring convenience
+Promise instances, Villa focuses on Promise utilities that bring convenience
 when cooperate with async/await syntax.
 
 # License
