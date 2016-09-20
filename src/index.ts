@@ -1,5 +1,6 @@
 export * from './array';
 export * from './awaitable';
+export * from './concurrency';
 export * from './function';
 export * from './miscellaneous';
 
