@@ -11,7 +11,7 @@ featured promise libraries like
 [bluebird](https://github.com/petkaantonov/bluebird) and
 [Q](https://github.com/kriskowal/q). But with the growing adoption of
 `async`/`await` provided by ES-next (via transpilers like
-[Babel](http://babeljs.io/) and [TypeScript](http://www.typescriptlang.org/)),
+[TypeScript](http://www.typescriptlang.org/) and [Babel](http://babeljs.io/)),
 some cretical features provided by those libraries become less relevant.
 
 And there is another problem with third-party promise for code using
