@@ -1,7 +1,7 @@
 import { retry } from '../../';
 
 describe('Feature: retry', () => {
-    it('Fulfilled directly', async () => {
+    it('Should handle process that fulfills directly', async () => {
         let result = await retry(async (reason, attempts) => {
             attempts.should.equal(0);
             return 'abc';
@@ -10,7 +10,7 @@ describe('Feature: retry', () => {
         result.should.equal('abc');
     });
 
-    it('Rejected twice then succeed', async () => {
+    it('Should handle process that rejects before fulfills', async () => {
         let count = 0;
 
         let result = await retry((reason, attempts) => {
@@ -30,7 +30,7 @@ describe('Feature: retry', () => {
         result.should.equal('abc');
     });
 
-    it('Exceeding retry limit', async () => {
+    it('Should handle process that exceeds retry limit', async () => {
         let count = 0;
 
         await retry((reason, attempts) => {
