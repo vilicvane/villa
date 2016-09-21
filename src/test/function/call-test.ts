@@ -7,66 +7,62 @@ let testValue = {
 type TestValueType = typeof testValue;
 
 describe('Feature: call', () => {
-    context('Successful invocation', () => {
-        it('Invoke successfully asynchronously', async () => {
-            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
-                a.should.equal(123);
-                b.should.equal('abc');
+    it('Should invoke successfully asynchronously', async () => {
+        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            a.should.equal(123);
+            b.should.equal('abc');
 
-                setTimeout(callback, 10, undefined, testValue);
-            }, 123, 'abc');
+            setTimeout(callback, 10, undefined, testValue);
+        }, 123, 'abc');
 
-            ret.should.be.an.instanceOf(Promise);
+        ret.should.be.an.instanceOf(Promise);
 
-            let result = await ret;
+        let result = await ret;
 
-            // Should compile.
-            result.value;
+        // Should compile.
+        result.value;
 
-            result.should.equal(testValue);
-        });
-
-        it('Invoke successfully synchronously', async () => {
-            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
-                a.should.equal(123);
-                b.should.equal('abc');
-
-                callback(undefined, testValue);
-            }, 123, 'abc');
-
-            ret.should.be.an.instanceOf(Promise);
-
-            let result = await ret;
-
-            result.should.equal(testValue);
-        });
+        result.should.equal(testValue);
     });
 
-    context('Failed invocation', () => {
-        it('Invoke failed asynchronously', async () => {
-            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
-                a.should.equal(123);
-                b.should.equal('abc');
+    it('Should invoke successfully synchronously', async () => {
+        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            a.should.equal(123);
+            b.should.equal('abc');
 
-                setTimeout(callback, 10, new Error('invoke-failure'));
-            }, 123, 'abc');
+            callback(undefined, testValue);
+        }, 123, 'abc');
 
-            ret.should.be.an.instanceOf(Promise);
+        ret.should.be.an.instanceOf(Promise);
 
-            await ret.should.be.rejectedWith(Error, 'invoke-failure');
-        });
+        let result = await ret;
 
-        it('Invoke successfully synchronously', async () => {
-            let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
-                a.should.equal(123);
-                b.should.equal('abc');
+        result.should.equal(testValue);
+    });
 
-                callback(new Error('invoke-failure'));
-            }, 123, 'abc');
+    it('Should invoke failed asynchronously', async () => {
+        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            a.should.equal(123);
+            b.should.equal('abc');
 
-            ret.should.be.an.instanceOf(Promise);
+            setTimeout(callback, 10, new Error('invoke-failure'));
+        }, 123, 'abc');
 
-            await ret.should.be.rejectedWith(Error, 'invoke-failure');
-        });
+        ret.should.be.an.instanceOf(Promise);
+
+        await ret.should.be.rejectedWith(Error, 'invoke-failure');
+    });
+
+    it('Should invoke successfully synchronously', async () => {
+        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+            a.should.equal(123);
+            b.should.equal('abc');
+
+            callback(new Error('invoke-failure'));
+        }, 123, 'abc');
+
+        ret.should.be.an.instanceOf(Promise);
+
+        await ret.should.be.rejectedWith(Error, 'invoke-failure');
     });
 });
