@@ -9,11 +9,11 @@ async function _lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
         await lockObjectToPromiseMapping.get(object);
     } catch (error) { }
 
-    return await handler();
+    return handler();
 }
 
 export async function lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
     let ret = _lock(object, handler);
     lockObjectToPromiseMapping.set(object, ret);
-    return await ret;
+    return ret;
 }
