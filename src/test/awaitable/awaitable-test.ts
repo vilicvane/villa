@@ -3,9 +3,7 @@ import { spawn } from 'child_process';
 
 import { expect } from 'chai';
 
-import {
-    awaitable
-} from '../../';
+import { awaitable } from '../../';
 
 let testError = new Error();
 

@@ -1,6 +1,4 @@
-import {
-    sleep
-} from '../../';
+import { sleep } from '../../';
 
 describe('Feature: sleep', () => {
     it('Should create a promise that fulfills in given duration', async () => {

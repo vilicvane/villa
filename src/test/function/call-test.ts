@@ -1,4 +1,4 @@
-import { call, NodeStyleCallback } from '../../';
+import { NodeStyleCallback, call } from '../../';
 
 let testValue = {
     value: 'test value'
