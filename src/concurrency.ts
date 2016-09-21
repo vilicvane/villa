@@ -1,12 +1,12 @@
 import { Resolvable } from './';
 
-let lockObjectToResolvableMapping = new Map<any, Promise<any>>();
+let lockObjectToPromiseMapping = new Map<any, Promise<any>>();
 
 export type LockHandler<T> = () => Resolvable<T>;
 
 async function _lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
     try {
-        await lockObjectToResolvableMapping.get(object);
+        await lockObjectToPromiseMapping.get(object);
     } catch (error) { }
 
     return await handler();
@@ -14,6 +14,6 @@ async function _lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
 
 export async function lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
     let ret = _lock(object, handler);
-    lockObjectToResolvableMapping.set(object, ret);
+    lockObjectToPromiseMapping.set(object, ret);
     return await ret;
 }
