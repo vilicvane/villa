@@ -1,6 +1,6 @@
 import { Resolvable } from './';
 
-let lockObjectToResolvableMapping = new Map<any, Resolvable<any>>();
+let lockObjectToResolvableMapping = new Map<any, Promise<any>>();
 
 export type LockHandler<T> = () => Resolvable<T>;
 
