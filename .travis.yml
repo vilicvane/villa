@@ -1,7 +1,16 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
 before_script:
-  - npm run build
+- npm run build
 after_script:
-  - npm run coveralls
+- npm run coveralls
+deploy:
+  provider: npm
+  email: i@vilic.info
+  api_key:
+    secure: RfU8fNHAfwUtpkKDeml4MEtHGikuRL6Ck1/gLc3NXJVybI/7Lz3lzhhPBfmKE5semLZhdzMGFxRux/fLdF9xC1chXpWN1R1KT8yKtRiyDVkZMDknL2OwffLQKy0oH7bB+QEP5TSSJlYHUQLTh9tVU+z0XZFlE4nLlA3Ke4ecL6qxBclWTpOgWoYto4yelqX9nf09PN+zDJF8gRv0hx4SaOnv7TSzDYMSw/XI2DemN93CLwCXdvmvz87iIK/bFZ3zjndc4mGTvKU2K8UU/McfjP9GpNqUsR6i3gyZ2QMYODpzUxKzsMMxAT7IyUPmcZeWEHRaw3SthtfMSZWp+LfcK+9wzsuDPmHEhawl9dVlFd5oXzjyiy8msLGMca3fGP0ZSKYPoZM/ufgXwAcSUv3QNfgYImHYSLmW+mFJuiiy2fsaX3doX2RdtGTEGzpC9bi/JzMnfXBOsn66J1aPcBKg0qJrttvtYoJaCSSpkpWEScXRE40taS8Bq1ZPyG7GwlT11Xv0U5ykGquXbNg2/+57j3FJxvoqla1WDqL3yEWRBuj/Ry887P+MCGJOKx2ceZapyergsAn1lObUpnKteNUldNmUbg4EHR4Jcn+x3WPUd4oYPV0B1LxjhF3pJh50obqz8IWgYZxBUJ6GibdGhL62ov885T406WY5H4iHLTQvVs4=
+  on:
+    tags: true
+    node: '6'
+  skip_cleanup: true

@@ -9,8 +9,7 @@
         "build": "tsc",
         "quick-test": "mocha",
         "test": "istanbul cover node_modules/mocha/bin/_mocha",
-        "coveralls": "cat coverage/lcov.info | coveralls",
-        "prepublish": "npm run clean && npm run build && npm run quick-test"
+        "coveralls": "cat coverage/lcov.info | coveralls"
     },
     "repository": {
         "type": "git",
