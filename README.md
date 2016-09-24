@@ -31,19 +31,37 @@ both TypeScript and Babel.
 npm install villa --save
 ```
 
-# Example
-
+# Usage Example
 ```ts
 import * as FS from 'fs';
-import { awaitable } from 'villa';
+import * as Path from 'fs';
+import * as v from 'villa';
 
 async function copy(source, target) {
     let readStream = FS.createReadStream(source);
     let writeStream = FS.createWriteStream(target);
     readStream.pipe(writeStream);
-    return awaitable(writeStream, 'close', [readStream]);
+    return v.awaitable(writeStream, 'close', [readStream]);
+}
+
+async function copyAll(sourceDir, targetDir) {
+    let fileNames = v.call(FS.readdir, sourceDir);
+
+    fileNames = await v.filter(fileNames, async fileName => {
+        return (await v.call(FS.stat, fileName)).isFile();
+    });
+
+    for (let fileName of fileNames) {
+        let source = Path.join(sourceDir, fileName);
+        let target = Path.join(targetDir, fileName);
+        await copy(source, target);
+    }
 }
 ```
+
+# API References
+
+Comming soon.
 
 # License
 
