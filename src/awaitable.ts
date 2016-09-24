@@ -135,19 +135,19 @@ if (EventEmitterConstructor) {
  * @param process The process to listen on 'exit' and 'error' events for
  *     fulfillment or rejection.
  */
-export function awaitable(process: ChildProcess): Promise<void>;
+export function awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>;
 /**
  * Create a promise for a `Readable` stream.
  * @param stream The stream to listen on 'end', 'close' and 'error' events for
  *     fulfillment or rejection.
  */
-export function awaitable(stream: Readable): Promise<void>;
+export function awaitable(stream: Readable, errorEmitters?: EventEmitter[]): Promise<void>;
 /**
  * Create a promise for a `Writable` stream.
  * @param stream The stream to listen on finish', 'close' and 'error' events
  *     for fulfillment or rejection.
  */
-export function awaitable(stream: Writable): Promise<void>;
+export function awaitable(stream: Writable, errorEmitters?: EventEmitter[]): Promise<void>;
 /**
  * Create a promise for an event emitter.
  * @param emitter The emitter to listen on 'error' event for rejection, and

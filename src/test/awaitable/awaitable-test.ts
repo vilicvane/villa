@@ -124,12 +124,23 @@ describe('Feature: awaitable', () => {
 
         it('Should reject on child process that exits with code non-zero', async () => {
             let cp = spawn(process.execPath, ['-e', 'throw new Error();']);
-            await awaitable(cp).should.be.rejected;
+            await awaitable(cp).should.be.rejectedWith('Invalid exit code');
         });
 
         it('Should reject on child process that spawns with error', async () => {
             let cp = spawn(`foo-bar-${Math.random()}`);
-            await awaitable(cp).should.be.rejected;
+            await awaitable(cp).should.be.rejectedWith(/ENOENT/);
+        });
+
+        it('Should reject on error event emitted by error emitters', async () => {
+            let emitter = spawn(process.execPath, ['-e', ';']);
+            let errorEmitter = new EventEmitter();
+
+            let ret = awaitable(emitter, [errorEmitter]);
+
+            setImmediate(() => errorEmitter.emit('error', testError));
+
+            await ret.should.be.rejectedWith(testError);
         });
     });
 
@@ -152,14 +163,15 @@ describe('Feature: awaitable', () => {
             expect(await ret).to.be.undefined;
         });
 
-        it('Should reject on child process that exits with code non-zero', async () => {
-            let cp = spawn(process.execPath, ['-e', 'throw new Error();']);
-            await awaitable(cp).should.be.rejected;
-        });
+        it('Should reject on error event emitted by error emitters', async () => {
+            let emitter = new Readable();
+            let errorEmitter = new EventEmitter();
 
-        it('Should reject on child process that spawns with error', async () => {
-            let cp = spawn(`foo-bar-${Math.random()}`);
-            await awaitable(cp).should.be.rejected;
+            let ret = awaitable(emitter, [errorEmitter]);
+
+            setImmediate(() => errorEmitter.emit('error', testError));
+
+            await ret.should.be.rejectedWith(testError);
         });
     });
 
