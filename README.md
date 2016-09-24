@@ -34,7 +34,7 @@ npm install villa --save
 # Usage Example
 ```ts
 import * as FS from 'fs';
-import * as Path from 'fs';
+import * as Path from 'path';
 import * as v from 'villa';
 
 async function copy(source, target) {
