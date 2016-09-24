@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import { Stream, Readable, Writable } from 'stream';
 import { spawn } from 'child_process';
 
 import { expect } from 'chai';
@@ -11,24 +12,9 @@ let testValue = {
     value: 'test value'
 };
 
+type TestValueType = typeof testValue;
+
 describe('Feature: awaitable', () => {
-    context('From `ChildProcess`', () => {
-        it('Should fulfill on child process that exits with code 0', async () => {
-            let cp = spawn(process.execPath, ['-e', ';']);
-            expect(await awaitable(cp)).to.be.undefined;
-        });
-
-        it('Should reject on child process that exits with code non-zero', async () => {
-            let cp = spawn(process.execPath, ['-e', 'throw new Error();']);
-            await awaitable(cp).should.be.rejected;
-        });
-
-        it('Should reject on child process that spawns with error', async () => {
-            let cp = spawn(`foo-bar-${Math.random()}`);
-            await awaitable(cp).should.be.rejected;
-        });
-    });
-
     context('From `EventEmitter`', () => {
         it('Should fulfill on single event type to listen', async () => {
             let emitter = new EventEmitter();
@@ -46,6 +32,26 @@ describe('Feature: awaitable', () => {
             setImmediate(() => emitter.emit('close', testValue));
 
             expect(await ret).to.equal(testValue);
+        });
+
+        it('Should fulfill on with transformed value', async () => {
+            let emitter = new EventEmitter();
+            let ret = awaitable(emitter, 'close', (result: TestValueType) => result.value);
+
+            setImmediate(() => emitter.emit('close', testValue));
+
+            expect(await ret).to.equal(testValue.value);
+        });
+
+        it('Should reject on failed assertion', async () => {
+            let emitter = new EventEmitter();
+            let ret = awaitable(emitter, 'close', () => {
+                throw testError;
+            });
+
+            setImmediate(() => emitter.emit('close', testValue));
+
+            await ret.should.be.rejectedWith(testError);
         });
 
         it('Should fulfill on multiple event types to listen', async () => {
@@ -99,6 +105,61 @@ describe('Feature: awaitable', () => {
             await new Promise(resolve => setTimeout(resolve, 10));
 
             settled.should.be.false;
+        });
+
+        it('Should error because of undefined `types`', () => {
+            let emitter = new EventEmitter();
+            let errorEmitter = new EventEmitter();
+
+            (() => awaitable(emitter, <any>[errorEmitter]))
+                .should.throw('Missing event types');
+        });
+    });
+
+    context('From `ChildProcess`', () => {
+        it('Should fulfill on child process that exits with code 0', async () => {
+            let cp = spawn(process.execPath, ['-e', ';']);
+            expect(await awaitable(cp)).to.be.undefined;
+        });
+
+        it('Should reject on child process that exits with code non-zero', async () => {
+            let cp = spawn(process.execPath, ['-e', 'throw new Error();']);
+            await awaitable(cp).should.be.rejected;
+        });
+
+        it('Should reject on child process that spawns with error', async () => {
+            let cp = spawn(`foo-bar-${Math.random()}`);
+            await awaitable(cp).should.be.rejected;
+        });
+    });
+
+    context('From `Stream`', () => {
+        it('Should fulfill on "end" event of readable stream', async () => {
+            let stream = new Readable();
+            let ret = awaitable(stream);
+
+            setImmediate(() => stream.emit('end'));
+
+            expect(await ret).to.be.undefined;
+        });
+
+        it('Should fulfill on "finish" event of writable stream', async () => {
+            let stream = new Writable();
+            let ret = awaitable(stream);
+
+            setImmediate(() => stream.emit('finish'));
+
+            expect(await ret).to.be.undefined;
+        });
+
+        it('Should reject on child process that exits with code non-zero', async () => {
+            let cp = spawn(process.execPath, ['-e', 'throw new Error();']);
+            await awaitable(cp).should.be.rejected;
+        });
+
+        it('Should reject on child process that spawns with error', async () => {
+            let cp = spawn(`foo-bar-${Math.random()}`);
+            await awaitable(cp).should.be.rejected;
         });
     });
 
