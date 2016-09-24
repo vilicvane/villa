@@ -2,6 +2,42 @@ import {
     Resolvable
 } from './';
 
+export type EachHandler<T> = (value: T, index: number, values: T[]) => Resolvable<void | boolean>;
+
+export async function each<T>(values: T[], handler: EachHandler<T>): Promise<boolean> {
+    for (let i = 0; i < values.length; i++) {
+        if (await handler(values[i], i, values) === false) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+export type SomeHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+
+export async function some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean> {
+    for (let i = 0; i < values.length; i++) {
+        if (await handler(values[i], i, values)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+export type EveryHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+
+export async function every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean> {
+    for (let i = 0; i < values.length; i++) {
+        if (!await handler(values[i], i, values)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 export type MapTransformer<T, TResult> = (value: T, index: number, values: T[]) => Resolvable<TResult>;
 
 export async function map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]> {
@@ -69,40 +105,4 @@ export async function reduce<T, TResult>(values: T[], transformer: ReduceTransfo
     return values.reduce(async (result, value, index) => {
         return transformer(await result, value, index, values);
     }, initial as Resolvable<TResult>);
-}
-
-export type EachHandler<T> = (value: T, index: number, values: T[]) => Resolvable<void | boolean>;
-
-export async function each<T>(values: T[], handler: EachHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (await handler(values[i], i, values) === false) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-export type SomeHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
-
-export async function some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (await handler(values[i], i, values)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-export type EveryHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
-
-export async function every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (!await handler(values[i], i, values)) {
-            return false;
-        }
-    }
-
-    return true;
 }
