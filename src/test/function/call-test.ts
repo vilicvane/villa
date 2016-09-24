@@ -8,7 +8,7 @@ type TestValueType = typeof testValue;
 
 describe('Feature: call', () => {
     it('Should invoke successfully asynchronously', async () => {
-        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+        let ret = call((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
             a.should.equal(123);
             b.should.equal('abc');
 
@@ -26,7 +26,7 @@ describe('Feature: call', () => {
     });
 
     it('Should invoke successfully synchronously', async () => {
-        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+        let ret = call((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
             a.should.equal(123);
             b.should.equal('abc');
 
@@ -41,7 +41,7 @@ describe('Feature: call', () => {
     });
 
     it('Should invoke failed asynchronously', async () => {
-        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+        let ret = call((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
             a.should.equal(123);
             b.should.equal('abc');
 
@@ -54,7 +54,7 @@ describe('Feature: call', () => {
     });
 
     it('Should invoke successfully synchronously', async () => {
-        let ret = call<TestValueType>((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
+        let ret = call((a: number, b: string, callback: NodeStyleCallback<TestValueType>) => {
             a.should.equal(123);
             b.should.equal('abc');
 
