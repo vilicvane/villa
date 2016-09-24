@@ -40,12 +40,14 @@ import * as v from 'villa';
 async function copy(source, target) {
     let readStream = FS.createReadStream(source);
     let writeStream = FS.createWriteStream(target);
+
     readStream.pipe(writeStream);
-    return v.awaitable(writeStream, 'close', [readStream]);
+
+    await v.awaitable(writeStream, 'close', [readStream]);
 }
 
 async function copyAll(sourceDir, targetDir) {
-    let fileNames = v.call(FS.readdir, sourceDir);
+    let fileNames = await v.call(FS.readdir, sourceDir);
 
     fileNames = await v.filter(fileNames, async fileName => {
         return (await v.call(FS.stat, fileName)).isFile();
