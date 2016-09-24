@@ -25,7 +25,7 @@ from my own promise library [ThenFail](https://github.com/vilic/thenfail).
 # Installation
 
 Villa is written in TypeScript and compiled with TypeScript 2.0, and works with
-both TypeScript and Babel.
+TypeScript, Babel and ES6 generators.
 
 ```sh
 npm install villa --save
