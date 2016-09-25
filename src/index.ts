@@ -1,6 +1,6 @@
 export * from './array';
 export * from './awaitable';
-export * from './chain';
+export * from './chainable';
 export * from './concurrency';
 export * from './function';
 export * from './miscellaneous';
