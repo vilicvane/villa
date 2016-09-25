@@ -48,17 +48,17 @@ async function copy(source, target) {
 }
 
 async function copyAll(sourceDir, targetDir) {
-    let fileNames = await v.call(FS.readdir, sourceDir);
-
-    fileNames = await v.filter(fileNames, async fileName => {
-        return (await v.call(FS.stat, fileName)).isFile();
-    });
-
-    for (let fileName of fileNames) {
-        let source = Path.join(sourceDir, fileName);
-        let target = Path.join(targetDir, fileName);
-        await copy(source, target);
-    }
+    await v
+        .chain(v.call(FS.readdir, sourceDir))
+        .filter(async fileName => {
+            let stats = await v.call(FS.stat, fileName);
+            return stats.isFile();
+        })
+        .each(async fileName => {
+            let source = Path.join(sourceDir, fileName);
+            let target = Path.join(targetDir, fileName);
+            await copy(source, target);
+        });
 }
 ```
 
