@@ -85,7 +85,7 @@ describe('Feature: map', () => {
         results.should.deep.equal([]);
     });
 
-    it('Should handle synchronous exception', async () => {
+    it('Should handle synchronous exception with concurrency limit', async () => {
         let values = [0];
         let error = new Error();
 
@@ -95,7 +95,7 @@ describe('Feature: map', () => {
         .should.be.rejectedWith(error);
     });
 
-    it('Should handle asynchronous exception', async () => {
+    it('Should handle asynchronous exception with concurrency limit', async () => {
         let values = [0];
         let error = new Error();
 
