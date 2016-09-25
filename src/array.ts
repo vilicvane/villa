@@ -100,11 +100,15 @@ export async function map<T, TResult>(values: T[], transformer: MapTransformer<T
 }
 
 export type ReduceTransformer<T, TResult> = (result: TResult, value: T, index: number, values: T[]) => Resolvable<TResult>;
+export type ReduceNonInitialTransformer<T, TResult> = (result: TResult | undefined, value: T, index: number, values: T[]) => Resolvable<TResult>;
 
-export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial?: TResult): Promise<TResult> {
-    return values.reduce(async (result, value, index) => {
+export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
+export async function reduce<T>(values: T[], transformer: ReduceNonInitialTransformer<T, T>, initial?: undefined): Promise<T | undefined>;
+export async function reduce<T, TResult>(values: T[], transformer: ReduceNonInitialTransformer<T, TResult>, initial?: undefined): Promise<TResult | undefined>;
+export async function reduce<T, TResult>(values: T[], transformer: ReduceNonInitialTransformer<T, TResult>, initial?: TResult): Promise<TResult | undefined> {
+    return values.reduce<Resolvable<TResult> | undefined>(async (result, value, index) => {
         return transformer(await result, value, index, values);
-    }, initial as Resolvable<TResult>);
+    }, initial);
 }
 
 export type FilterHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;

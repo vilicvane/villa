@@ -39,6 +39,20 @@ describe('Feature: reduce', () => {
         });
     });
 
+    it('Should reduce with no initial value', async () => {
+        let count = 0;
+        let values = [1, 2, 3];
+
+        let result = await reduce(values, async (previous, current, index, array) => {
+            index.should.equal(count++);
+            array.should.equal(values);
+
+            return (previous || 0) + current;
+        });
+
+        result!.should.equal(6);
+    });
+
     it('Should handle exception', async () => {
         let values = [1, 2, 3];
         let error = new Error('exception');
