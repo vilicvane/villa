@@ -1,8 +1,8 @@
-import { chain, Chainable } from '../../';
+import { chainable, Chainable } from '../../';
 
-describe('Feature: chain', () => {
+describe('Feature: chainable', () => {
     it('Should work with `filter` and `map`', async () => {
-        let ret = chain([1, 2, 3])
+        let ret = chainable([1, 2, 3])
             .filter(async value => value !== 2)
             .map(async value => value * 2);
 
@@ -12,7 +12,7 @@ describe('Feature: chain', () => {
 
     it('Should work with `reduce` and `each`', async () => {
         let sum = 0;
-        let ret = chain([[1], [2, 3], [4, 5, 6]])
+        let ret = chainable([[1], [2, 3], [4, 5, 6]])
             .reduce<number>(async (flatten, values) => flatten.concat(values), [])
             .each(async value => { sum += value; });
 
@@ -22,7 +22,7 @@ describe('Feature: chain', () => {
     });
 
     it('Should work with `reduce` that results in a non-array value', async () => {
-        let ret = chain([1, 2, 3])
+        let ret = chainable([1, 2, 3])
             .reduce<number>(async (sum, value) => sum + value, 0);
 
         ret.should.not.be.an.instanceOf(Chainable);
@@ -31,7 +31,7 @@ describe('Feature: chain', () => {
 
     it('Should work with `map` and `every`', async () => {
         let count = 0;
-        let ret = chain([1, 2, 3])
+        let ret = chainable([1, 2, 3])
             .map(async value => value * 2)
             .every(async value => {
                 count++;
@@ -45,7 +45,7 @@ describe('Feature: chain', () => {
 
     it('Should work with `filter` and `some`', async () => {
         let count = 0;
-        let ret = chain([1, 2, 3])
+        let ret = chainable([1, 2, 3])
             .filter(async value => value !== 2)
             .some(async value => {
                 count++;

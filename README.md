@@ -49,7 +49,7 @@ async function copy(source, target) {
 
 async function copyAll(sourceDir, targetDir) {
     await v
-        .chain(v.call(FS.readdir, sourceDir))
+        .chainable(v.call(FS.readdir, sourceDir))
         .filter(async fileName => {
             let stats = await v.call(FS.stat, fileName);
             return stats.isFile();
