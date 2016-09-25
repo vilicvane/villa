@@ -106,3 +106,18 @@ export async function reduce<T, TResult>(values: T[], transformer: ReduceTransfo
         return transformer(await result, value, index, values);
     }, initial as Resolvable<TResult>);
 }
+
+export type FilterHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+
+export async function filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]> {
+    let results = [] as T[];
+
+    for (let i = 0; i < values.length; i++) {
+        let value = values[i];
+        if (await handler(value, i, values)) {
+            results.push(value);
+        }
+    }
+
+    return results;
+}
