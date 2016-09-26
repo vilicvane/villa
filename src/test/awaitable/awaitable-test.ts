@@ -145,20 +145,20 @@ describe('Feature: awaitable', () => {
     });
 
     context('From `Stream`', () => {
-        it('Should fulfill on "end" event of readable stream', async () => {
+        it('Should fulfill on "close" event of readable stream', async () => {
             let stream = new Readable();
             let ret = awaitable(stream);
 
-            setImmediate(() => stream.emit('end'));
+            setImmediate(() => stream.emit('close'));
 
             expect(await ret).to.be.undefined;
         });
 
-        it('Should fulfill on "finish" event of writable stream', async () => {
+        it('Should fulfill on "close" event of writable stream', async () => {
             let stream = new Writable();
             let ret = awaitable(stream);
 
-            setImmediate(() => stream.emit('finish'));
+            setImmediate(() => stream.emit('close'));
 
             expect(await ret).to.be.undefined;
         });

@@ -36,13 +36,12 @@ function getEventEmitterAwaitableOptions(emitter: EventEmitter): EventEmitterAwa
                 }
             }
         };
-    } else if (ReadableConstructor && emitter instanceof ReadableConstructor) {
-            return {
-            types: ['end', 'close']
-        };
-    } else if (WritableConstructor && emitter instanceof WritableConstructor) {
+    } else if (
+        ReadableConstructor && emitter instanceof ReadableConstructor ||
+        WritableConstructor && emitter instanceof WritableConstructor
+    ) {
         return {
-            types: ['finish', 'close']
+            types: ['close']
         };
     } else {
         throw new Error('Missing event types');
