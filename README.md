@@ -64,7 +64,36 @@ async function copyAll(sourceDir, targetDir) {
 
 # API References
 
-Comming soon.
+- [[+]](/src/array.ts#L4)
+  each(values, handler)
+- [[+]](/src/array.ts#L16)
+  some(values, handler)
+- [[+]](/src/array.ts#L28)
+  every(values, handler)
+- [[+]](/src/array.ts#L40)
+  map(values, transformer, concurrency?)
+- [[+]](/src/array.ts#L101)
+  reduce(values, transformer, initial) <sup>+1</sup>
+  - reduce(values, transformer)
+- [[+]](/src/array.ts#L111)
+  filter(values, handler)
+- [[+]](/src/awaitable.ts#L129)
+  awaitable(process, errorEmitters?) <sup>+3</sup>
+  - awaitable(stream, errorEmitters?)
+  - awaitable(emitter, types, errorEmitters?)
+  - awaitable(emitter, types, assertion, errorEmitters?)
+- [[+]](/src/chainable.ts#L56)
+  chainable(resolvable)
+- [[+]](/src/concurrency.ts#L12)
+  lock(object, handler)
+- [[+]](/src/function.ts#L8)
+  call(fn, ...args)
+- [[+]](/src/function.ts#L26)
+  async(fn)
+- [[+]](/src/miscellaneous.ts#L0)
+  sleep(duration)
+- [[+]](/src/miscellaneous.ts#L17)
+  retry(handler, options?)
 
 # License
 
