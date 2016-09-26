@@ -29,6 +29,14 @@ describe('Feature: chainable', () => {
         (await ret).should.equal(6);
     });
 
+    it('Should work with `reduce` that has no intial value', async () => {
+        let ret = chainable([1, 2, 3])
+            .reduce(async (sum, value) => sum + value);
+
+        ret.should.not.be.an.instanceOf(Chainable);
+        (await ret).should.equal(6);
+    });
+
     it('Should work with `map` and `every`', async () => {
         let count = 0;
         let ret = chainable([1, 2, 3])

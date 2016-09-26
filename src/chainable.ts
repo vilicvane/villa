@@ -37,10 +37,11 @@ export class Chainable<T> extends Promise<T[]> {
     }
 
     reduce<TResult>(transformer: ReduceTransformer<T, TResult[]>, initial: TResult[]): Chainable<TResult>;
-    reduce<TResult>(transformer: ReduceTransformer<T, TResult>, initial?: TResult): Promise<TResult>;
-    reduce(transformer: ReduceTransformer<any, any>, initial?: any): Chainable<any> | Promise<any> {
-        let chainable = this.then(values => reduce(values, transformer, initial));
-        return Array.isArray(initial) ? chainable : Promise.resolve(chainable);
+    reduce<TResult>(transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
+    reduce(transformer: ReduceTransformer<T, T>): Promise<T>;
+    reduce(transformer: ReduceTransformer<any, any>, ...args: any[]): Chainable<any> | Promise<any> {
+        let chainable = this.then(values => (reduce as Function)(values, transformer, ...args));
+        return Array.isArray(args[0]) ? chainable : Promise.resolve(chainable);
     }
 
     some(handler: SomeHandler<T>): Promise<boolean> {
