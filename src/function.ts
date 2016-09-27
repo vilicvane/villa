@@ -27,8 +27,8 @@ export function call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<
 export type AsyncFunction<T> = (...args: any[]) => Promise<T>;
 
 /**
- * Wrap a Node.js-style asynchronous function to an asynchronous function that
- * returns a promise.
+ * Wrap a Node.js-style asynchronous function to a function that returns
+ * promise.
  */
 export function async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T> {
     return function (this: any, ...args: any[]): Promise<T> {

@@ -79,7 +79,7 @@ Create a promise for an event emitter.
 
 #### [[+]](/src/chainable.ts#L62) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
-Wrap given resolvable with a chainable subclass of built-in promise.
+Wrap given resolvable with a chainable derived of built-in promise.
 
 #### [[+]](/src/concurrency.ts#L18) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
 
@@ -92,8 +92,8 @@ promise.
 
 #### [[+]](/src/function.ts#L33) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
 
-Wrap a Node.js-style asynchronous function to an asynchronous function that
-returns a promise.
+Wrap a Node.js-style asynchronous function to a function that returns
+promise.
 
 #### [[+]](/src/miscellaneous.ts#L7) `sleep(duration: number): Promise<void>`
 
