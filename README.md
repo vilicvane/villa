@@ -66,9 +66,9 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [`async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`](/src/function.ts#L29)
+#### [[+]](/src/function.ts#L29) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
 
-#### [`awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`](/src/awaitable.ts#L131) <sup>+4</sup>
+#### [[+]](/src/awaitable.ts#L131) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>` <sup>+4</sup>
 
 ##### Overloads
 
@@ -77,38 +77,38 @@ async function copyAll(sourceDir, targetDir) {
 - `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
 - `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
-#### [`call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`](/src/function.ts#L15)
+#### [[+]](/src/function.ts#L15) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
 
 Call a Node.js-style asynchronous function and return a correspondent
 promise.
 
-#### [`chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`](/src/chainable.ts#L59)
+#### [[+]](/src/chainable.ts#L59) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
-#### [`each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`](/src/array.ts#L7)
+#### [[+]](/src/array.ts#L7) `each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`
 
-#### [`every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`](/src/array.ts#L31)
+#### [[+]](/src/array.ts#L31) `every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`
 
-#### [`filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`](/src/array.ts#L114)
+#### [[+]](/src/array.ts#L114) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
 
-#### [`lock<T>(object: any, handler: LockHandler<T>): Promise<T>`](/src/concurrency.ts#L15)
+#### [[+]](/src/concurrency.ts#L15) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
 
-#### [`map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`](/src/array.ts#L43)
+#### [[+]](/src/array.ts#L43) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`
 
-#### [`reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`](/src/array.ts#L104) <sup>+1</sup>
+#### [[+]](/src/array.ts#L104) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>` <sup>+1</sup>
 
 ##### Overloads
 
 - `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T>`
 
-#### [`retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`](/src/miscellaneous.ts#L26)
+#### [[+]](/src/miscellaneous.ts#L26) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
 
 Retry process in the handler for several times.
 
-#### [`sleep(duration: number): Promise<void>`](/src/miscellaneous.ts#L7)
+#### [[+]](/src/miscellaneous.ts#L7) `sleep(duration: number): Promise<void>`
 
 Create a promise that will be fulfilled in given duration (milliseconds).
 
-#### [`some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`](/src/array.ts#L19)
+#### [[+]](/src/array.ts#L19) `some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`
 
 <!-- endcheat -->
 
