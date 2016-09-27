@@ -48,11 +48,10 @@ function getEventEmitterAwaitableOptions(emitter: EventEmitter): EventEmitterAwa
     }
 }
 
-function eventEmitterAwaitableCreator(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>;
-function eventEmitterAwaitableCreator(stream: Readable, errorEmitters?: EventEmitter[]): Promise<void>;
-function eventEmitterAwaitableCreator(stream: Writable, errorEmitters?: EventEmitter[]): Promise<void>;
 function eventEmitterAwaitableCreator<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T> | undefined;
 function eventEmitterAwaitableCreator<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T> | undefined;
+function eventEmitterAwaitableCreator(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>;
+function eventEmitterAwaitableCreator(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>;
 function eventEmitterAwaitableCreator<T>(
     emitter: EventEmitter,
     types: string | string[] | EventEmitter[] | undefined,
@@ -129,6 +128,9 @@ if (EventEmitterConstructor) {
     awaitableCreators.push(eventEmitterAwaitableCreator);
 }
 
+export function awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>;
+export function awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>;
+export function awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>;
 /**
  * Create a promise for a `ChildProcess` object.
  * @param process The process to listen on 'exit' and 'error' events for
@@ -136,17 +138,11 @@ if (EventEmitterConstructor) {
  */
 export function awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>;
 /**
- * Create a promise for a `Readable` stream.
- * @param stream The stream to listen on 'end', 'close' and 'error' events for
+ * Create a promise for a stream.
+ * @param stream The stream to listen on 'close' and 'error' events for
  *     fulfillment or rejection.
  */
-export function awaitable(stream: Readable, errorEmitters?: EventEmitter[]): Promise<void>;
-/**
- * Create a promise for a `Writable` stream.
- * @param stream The stream to listen on finish', 'close' and 'error' events
- *     for fulfillment or rejection.
- */
-export function awaitable(stream: Writable, errorEmitters?: EventEmitter[]): Promise<void>;
+export function awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>;
 /**
  * Create a promise for an event emitter.
  * @param emitter The emitter to listen on 'error' event for rejection, and
@@ -155,9 +151,6 @@ export function awaitable(stream: Writable, errorEmitters?: EventEmitter[]): Pro
  * @param errorEmitters Other emitters to listen on 'error' event for
  *     rejection.
  */
-export function awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>;
-export function awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>;
-export function awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>;
 export function awaitable<T>(target: any, ...args: any[]): Promise<T> {
     for (let creator of awaitableCreators) {
         let promise = creator<T>(target, ...args);
