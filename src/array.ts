@@ -4,6 +4,9 @@ import {
 
 export type EachHandler<T> = (value: T, index: number, values: T[]) => Resolvable<void | boolean>;
 
+/**
+ * Asynchronous version of `Array#forEach()`.
+ */
 export async function each<T>(values: T[], handler: EachHandler<T>): Promise<boolean> {
     for (let i = 0; i < values.length; i++) {
         if (await handler(values[i], i, values) === false) {
@@ -16,6 +19,9 @@ export async function each<T>(values: T[], handler: EachHandler<T>): Promise<boo
 
 export type SomeHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
 
+/**
+ * Asynchronous version of `Array#some()`.
+ */
 export async function some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean> {
     for (let i = 0; i < values.length; i++) {
         if (await handler(values[i], i, values)) {
@@ -28,6 +34,9 @@ export async function some<T>(values: T[], handler: SomeHandler<T>): Promise<boo
 
 export type EveryHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
 
+/**
+ * Asynchronous version of `Array#every()`.
+ */
 export async function every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean> {
     for (let i = 0; i < values.length; i++) {
         if (!await handler(values[i], i, values)) {
@@ -40,6 +49,9 @@ export async function every<T>(values: T[], handler: EveryHandler<T>): Promise<b
 
 export type MapTransformer<T, TResult> = (value: T, index: number, values: T[]) => Resolvable<TResult>;
 
+/**
+ * Asynchronous version of `Array#map()` with basic concurrency control.
+ */
 export async function map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]> {
     if (typeof concurrency !== 'number') {
         return Promise.all(values.map(transformer));
@@ -101,6 +113,9 @@ export async function map<T, TResult>(values: T[], transformer: MapTransformer<T
 
 export type ReduceTransformer<T, TResult> = (result: TResult, value: T, index: number, values: T[]) => Resolvable<TResult>;
 
+/**
+ * Asynchronous version of `Array#reduce()`.
+ */
 export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
 export async function reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>;
 export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, ...args: any[]): Promise<TResult | undefined> {
@@ -111,6 +126,9 @@ export async function reduce<T, TResult>(values: T[], transformer: ReduceTransfo
 
 export type FilterHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
 
+/**
+ * Asynchronous version of `Array#filter()`.
+ */
 export async function filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]> {
     let results = [] as T[];
 

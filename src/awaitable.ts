@@ -128,6 +128,9 @@ if (EventEmitterConstructor) {
     awaitableCreators.push(eventEmitterAwaitableCreator);
 }
 
+/**
+ * Create a promise for an event emitter.
+ */
 export function awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>;
 export function awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>;
 export function awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>;

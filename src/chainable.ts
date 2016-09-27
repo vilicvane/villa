@@ -56,6 +56,9 @@ export class Chainable<T> extends Promise<T[]> {
     }
 }
 
+/**
+ * Wrap given resolvable with a chainable subclass of built-in promise.
+ */
 export function chainable<T>(resolvable: Resolvable<T[]>): Chainable<T> {
     return Chainable.resolve(resolvable);
 }

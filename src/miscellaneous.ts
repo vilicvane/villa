@@ -18,7 +18,7 @@ export interface RetryOptions {
 }
 
 /**
- * Retry process in the handler for several times.
+ * Retry procedure in the handler for several times.
  * @param handler Retry handler.
  * @param options Retry options.
  * @return Created promise.

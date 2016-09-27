@@ -12,6 +12,9 @@ async function _lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
     return handler();
 }
 
+/**
+ * A simple asynchronous lock that helps queueing operations.
+ */
 export async function lock<T>(object: any, handler: LockHandler<T>): Promise<T> {
     let ret = _lock(object, handler);
     lockObjectToPromiseMapping.set(object, ret);
