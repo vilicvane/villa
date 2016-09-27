@@ -66,7 +66,7 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [[+]](/src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>` <sup>+4</sup>
+#### [[+]](/src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`<sup>+4</sup>
 
 Create a promise for an event emitter.
 
@@ -119,7 +119,7 @@ Asynchronous version of `Array#every()`.
 
 Asynchronous version of `Array#map()` with basic concurrency control.
 
-#### [[+]](/src/array.ts#L119) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>` <sup>+1</sup>
+#### [[+]](/src/array.ts#L119) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
 
 Asynchronous version of `Array#reduce()`.
 
