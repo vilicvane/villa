@@ -64,36 +64,53 @@ async function copyAll(sourceDir, targetDir) {
 
 # API References
 
-- [[+]](/src/array.ts#L4)
-  each(values, handler)
-- [[+]](/src/array.ts#L16)
-  some(values, handler)
-- [[+]](/src/array.ts#L28)
-  every(values, handler)
-- [[+]](/src/array.ts#L40)
-  map(values, transformer, concurrency?)
-- [[+]](/src/array.ts#L101)
-  reduce(values, transformer, initial) <sup>+1</sup>
-  - reduce(values, transformer)
-- [[+]](/src/array.ts#L111)
-  filter(values, handler)
-- [[+]](/src/awaitable.ts#L129)
-  awaitable(process, errorEmitters?) <sup>+3</sup>
-  - awaitable(stream, errorEmitters?)
-  - awaitable(emitter, types, errorEmitters?)
-  - awaitable(emitter, types, assertion, errorEmitters?)
-- [[+]](/src/chainable.ts#L56)
-  chainable(resolvable)
-- [[+]](/src/concurrency.ts#L12)
-  lock(object, handler)
-- [[+]](/src/function.ts#L8)
-  call(fn, ...args)
-- [[+]](/src/function.ts#L26)
-  async(fn)
-- [[+]](/src/miscellaneous.ts#L0)
-  sleep(duration)
-- [[+]](/src/miscellaneous.ts#L17)
-  retry(handler, options?)
+<!-- docheat:functions -->
+
+#### [`async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`](/src/function.ts#L29)
+
+#### [`awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`](/src/awaitable.ts#L131) <sup>+4</sup>
+
+##### Overloads
+
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>`
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>`
+- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
+- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
+
+#### [`call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`](/src/function.ts#L15)
+
+Call a Node.js-style asynchronous function and return a correspondent
+promise.
+
+#### [`chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`](/src/chainable.ts#L59)
+
+#### [`each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`](/src/array.ts#L7)
+
+#### [`every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`](/src/array.ts#L31)
+
+#### [`filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`](/src/array.ts#L114)
+
+#### [`lock<T>(object: any, handler: LockHandler<T>): Promise<T>`](/src/concurrency.ts#L15)
+
+#### [`map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`](/src/array.ts#L43)
+
+#### [`reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`](/src/array.ts#L104) <sup>+1</sup>
+
+##### Overloads
+
+- `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T>`
+
+#### [`retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`](/src/miscellaneous.ts#L26)
+
+Retry process in the handler for several times.
+
+#### [`sleep(duration: number): Promise<void>`](/src/miscellaneous.ts#L7)
+
+Create a promise that will be fulfilled in given duration (milliseconds).
+
+#### [`some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`](/src/array.ts#L19)
+
+<!-- endcheat -->
 
 # License
 
