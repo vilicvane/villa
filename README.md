@@ -66,68 +66,68 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [[+]](/src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`<sup>+4</sup>
+#### [[+]](src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[] | undefined): Promise<void>`<sup>+4</sup>
 
 Create a promise for an event emitter.
 
 ##### Overloads:
 
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>`
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>`
-- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
-- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[] | undefined): Promise<T>`
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[] | undefined): Promise<T>`
+- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[] | undefined): Promise<void>`
+- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[] | undefined): Promise<void>`
 
-#### [[+]](/src/chainable.ts#L62) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L62) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
-#### [[+]](/src/concurrency.ts#L18) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
+#### [[+]](src/concurrency.ts#L18) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
 
 A simple asynchronous lock that helps queueing operations.
 
-#### [[+]](/src/function.ts#L15) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
+#### [[+]](src/function.ts#L15) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
 
 Call a Node.js-style asynchronous function and return a correspondent
 promise.
 
-#### [[+]](/src/function.ts#L33) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
+#### [[+]](src/function.ts#L33) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
 
 Wrap a Node.js-style asynchronous function to a function that returns
 promise.
 
-#### [[+]](/src/miscellaneous.ts#L7) `sleep(duration: number): Promise<void>`
+#### [[+]](src/miscellaneous.ts#L7) `sleep(duration: number): Promise<void>`
 
 Create a promise that will be fulfilled in given duration (milliseconds).
 
-#### [[+]](/src/miscellaneous.ts#L26) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
+#### [[+]](src/miscellaneous.ts#L26) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
 
 Retry procedure in the handler for several times.
 
-#### [[+]](/src/array.ts#L10) `each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L10) `each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#forEach()`.
 
-#### [[+]](/src/array.ts#L25) `some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L25) `some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#some()`.
 
-#### [[+]](/src/array.ts#L40) `every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L40) `every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#every()`.
 
-#### [[+]](/src/array.ts#L55) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`
+#### [[+]](src/array.ts#L55) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number | undefined): Promise<TResult[]>`
 
 Asynchronous version of `Array#map()` with basic concurrency control.
 
-#### [[+]](/src/array.ts#L119) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
+#### [[+]](src/array.ts#L119) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
 
 Asynchronous version of `Array#reduce()`.
 
 ##### Overloads:
 
-- `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T>`
+- `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
 
-#### [[+]](/src/array.ts#L132) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
+#### [[+]](src/array.ts#L132) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
 
 Asynchronous version of `Array#filter()`.
 

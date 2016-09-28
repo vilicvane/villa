@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "rm -rf bld",
     "build": "tsc",
+    "docheat": "docheat",
     "quick-test": "mocha",
     "test": "istanbul cover node_modules/mocha/bin/_mocha",
     "coveralls": "cat coverage/lcov.info | coveralls"
@@ -32,6 +33,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.13",
+    "docheat": "^0.1.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
     "source-map-support": "^0.4.2",
