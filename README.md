@@ -22,7 +22,7 @@ While most of the promise use cases so far can be addressed using
 `async`/`await` with simple helpers, I created villa with my favorite features
 from my own promise library [ThenFail](https://github.com/vilic/thenfail).
 
-# Installation
+## Installation
 
 Villa is written in TypeScript and compiled with TypeScript 2.0, and works with
 TypeScript, Babel and ES6 generators.
@@ -31,7 +31,7 @@ TypeScript, Babel and ES6 generators.
 npm install villa --save
 ```
 
-# Usage Example
+## Usage Example
 ```ts
 import * as FS from 'fs';
 import * as Path from 'path';
@@ -62,7 +62,7 @@ async function copyAll(sourceDir, targetDir) {
 }
 ```
 
-# API References
+## API References
 
 <!-- docheat:functions -->
 
@@ -133,6 +133,6 @@ Asynchronous version of `Array#filter()`.
 
 <!-- endcheat -->
 
-# License
+## License
 
 MIT License.
