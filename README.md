@@ -66,16 +66,16 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [[+]](src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[] | undefined): Promise<void>`<sup>+4</sup>
+#### [[+]](src/awaitable.ts#L134) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`<sup>+4</sup>
 
 Create a promise for an event emitter.
 
 ##### Overloads:
 
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[] | undefined): Promise<T>`
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[] | undefined): Promise<T>`
-- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[] | undefined): Promise<void>`
-- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[] | undefined): Promise<void>`
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>`
+- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>`
+- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
+- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
 #### [[+]](src/chainable.ts#L62) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
@@ -115,7 +115,7 @@ Asynchronous version of `Array#some()`.
 
 Asynchronous version of `Array#every()`.
 
-#### [[+]](src/array.ts#L55) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number | undefined): Promise<TResult[]>`
+#### [[+]](src/array.ts#L55) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`
 
 Asynchronous version of `Array#map()` with basic concurrency control.
 
