@@ -32,3 +32,12 @@ export type ParallelHandler<T> = (value: T, index: number, values: T[]) => Resol
 export async function parallel<T>(values: T[], handler: ParallelHandler<T>, concurrency?: number): Promise<void> {
     await map(values, handler, concurrency);
 }
+
+export type RaceTransformer<T, TResult> = (value: T, index: number, values: T[]) => Resolvable<TResult>;
+
+/**
+ * Race tasks and fulfill or reject as soon as one of them fulfills or rejects.
+ */
+export async function race<T, TResult>(values: T[], transformer: RaceTransformer<T, TResult>): Promise<TResult> {
+    return Promise.race(values.map(transformer));
+}

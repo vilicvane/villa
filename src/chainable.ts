@@ -6,13 +6,13 @@ import {
     FilterHandler,
     MapTransformer,
     ParallelHandler,
+    RaceTransformer,
     ReduceTransformer,
     SomeHandler,
     each,
     every,
     filter,
     map,
-    parallel,
     reduce,
     some
 } from './';
@@ -37,7 +37,12 @@ export class Chainable<T> extends Promise<T[]> {
     }
 
     parallel(handler: ParallelHandler<T>, concurrency?: number): Promise<void> {
-        let chainable = this.then(values => parallel(values, handler, concurrency));
+        let chainable = this.then(values => map(values, handler, concurrency));
+        return Promise.resolve(chainable).then(() => undefined);
+    }
+
+    race<TResult>(transformer: RaceTransformer<T, TResult>): Promise<TResult> {
+        let chainable = this.then(values => Promise.race(values.map(transformer)));
         return Promise.resolve(chainable);
     }
 

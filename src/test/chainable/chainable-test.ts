@@ -118,4 +118,17 @@ describe('Feature: chainable', () => {
         ret.should.not.be.an.instanceOf(Chainable);
         count.should.equal(3);
     });
+
+    it('Should work with `race`', async () => {
+        let count = 0;
+        let ret = chainable([2, 1, 3])
+            .race(async value => {
+                count++;
+                return new Promise<string>(resolve => setTimeout(resolve, value * 10, `n${value}`));
+            });
+
+        (await ret).should.equal('n1');
+        ret.should.not.be.an.instanceOf(Chainable);
+        count.should.equal(3);
+    });
 });
