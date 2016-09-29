@@ -38,10 +38,6 @@ export class Chainable<T> extends Promise<T[]> {
 
     parallel(handler: ParallelHandler<T>, concurrency?: number): Promise<void> {
         let chainable = this.then(values => parallel(values, handler, concurrency));
-        console.log(chainable);
-
-        chainable.then(value => console.log('chainable value', value));
-
         return Promise.resolve(chainable);
     }
 
