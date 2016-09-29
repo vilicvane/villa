@@ -44,7 +44,7 @@ async function copy(source, target) {
 
     readStream.pipe(writeStream);
 
-    await v.awaitable(writeStream, 'close', [readStream]);
+    await v.awaitable(writeStream, [readStream]);
 }
 
 async function copyAll(sourceDir, targetDir) {
