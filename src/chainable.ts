@@ -5,12 +5,14 @@ import {
     EveryHandler,
     FilterHandler,
     MapTransformer,
+    ParallelHandler,
     ReduceTransformer,
     SomeHandler,
     each,
     every,
     filter,
     map,
+    parallel,
     reduce,
     some
 } from './';
@@ -27,13 +29,20 @@ export class Chainable<T> extends Promise<T[]> {
     }
 
     filter(handler: FilterHandler<T>): Chainable<T> {
-        let promise = this.then(values => filter(values, handler));
-        return Chainable.resolve(promise);
+        return this.then(values => filter(values, handler)) as Chainable<T>;
     }
 
     map<TResult>(transformer: MapTransformer<T, TResult>, concurrency?: number): Chainable<TResult> {
-        let promise = this.then(values => map(values, transformer, concurrency));
-        return Chainable.resolve(promise);
+        return this.then(values => map(values, transformer, concurrency)) as Chainable<TResult>;
+    }
+
+    parallel(handler: ParallelHandler<T>, concurrency?: number): Promise<void> {
+        let chainable = this.then(values => parallel(values, handler, concurrency));
+        console.log(chainable);
+
+        chainable.then(value => console.log('chainable value', value));
+
+        return Promise.resolve(chainable);
     }
 
     reduce<TResult>(transformer: ReduceTransformer<T, TResult[]>, initial: TResult[]): Chainable<TResult>;
@@ -41,7 +50,7 @@ export class Chainable<T> extends Promise<T[]> {
     reduce(transformer: ReduceTransformer<T, T>): Promise<T>;
     reduce(transformer: ReduceTransformer<any, any>, ...args: any[]): Chainable<any> | Promise<any> {
         let chainable = this.then(values => (reduce as Function)(values, transformer, ...args));
-        return Array.isArray(args[0]) ? chainable : Promise.resolve(chainable);
+        return Array.isArray(args[0]) ? chainable as Chainable<any> : Promise.resolve(chainable);
     }
 
     some(handler: SomeHandler<T>): Promise<boolean> {

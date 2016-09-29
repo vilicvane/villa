@@ -1,4 +1,7 @@
-import { Resolvable } from './';
+import {
+    Resolvable,
+    map
+} from './';
 
 let lockObjectToPromiseMapping = new Map<any, Promise<any>>();
 
@@ -19,4 +22,13 @@ export async function lock<T>(object: any, handler: LockHandler<T>): Promise<T> 
     let ret = _lock(object, handler);
     lockObjectToPromiseMapping.set(object, ret);
     return ret;
+}
+
+export type ParallelHandler<T> = (value: T, index: number, values: T[]) => Resolvable<void>;
+
+/**
+ * Run tasks in parallel, similar to `v.map` but not mean to transform.
+ */
+export async function parallel<T>(values: T[], handler: ParallelHandler<T>, concurrency?: number): Promise<void> {
+    await map(values, handler, concurrency);
 }

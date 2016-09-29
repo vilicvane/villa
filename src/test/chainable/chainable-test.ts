@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import { chainable, Chainable } from '../../';
 
 describe('Feature: chainable', () => {
@@ -37,10 +39,22 @@ describe('Feature: chainable', () => {
         (await ret).should.equal(6);
     });
 
-    it('Should work with `map` and `every`', async () => {
+    it('Should work with `map` (with concurrency limit) and `every`', async () => {
         let count = 0;
+        let processing = 0;
         let ret = chainable([1, 2, 3])
-            .map(async value => value * 2)
+            .map(async value => {
+                processing++;
+
+                processing.should.be.lte(2);
+
+                return new Promise<number>(resolve => {
+                    setTimeout(() => {
+                        processing--;
+                        resolve(value * 2);
+                    }, 10);
+                });
+            }, 2)
             .every(async value => {
                 count++;
                 return value % 2 === 0;
@@ -63,5 +77,45 @@ describe('Feature: chainable', () => {
         (await ret).should.be.true;
         ret.should.not.be.an.instanceOf(Chainable);
         count.should.equal(2);
+    });
+
+    it('Should work with `filter` and `parallel`', async () => {
+        let count = 0;
+        let sum = 0;
+        let ret = chainable([1, 2, 3])
+            .filter(async value => !!(value % 2))
+            .parallel(async value => {
+                count++;
+                sum += value;
+            });
+
+        expect(await ret).to.be.undefined;
+        ret.should.not.be.an.instanceOf(Chainable);
+        count.should.equal(2);
+        sum.should.equal(4);
+    });
+
+    it('Should work with `map` and `parallel` (with concurrency limit)', async () => {
+        let count = 0;
+        let processing = 0;
+        let ret = chainable([1, 2, 3])
+            .map(async value => value + 1)
+            .parallel(async value => {
+                count++;
+                processing++;
+
+                processing.should.be.lte(2);
+
+                return new Promise<void>(resolve => {
+                    setTimeout(() => {
+                        processing--;
+                        resolve();
+                    }, 10);
+                });
+            }, 2);
+
+        expect(await ret).to.be.undefined;
+        ret.should.not.be.an.instanceOf(Chainable);
+        count.should.equal(3);
     });
 });

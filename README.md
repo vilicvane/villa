@@ -77,13 +77,17 @@ Create a promise for an event emitter.
 - `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
 - `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
-#### [[+]](src/chainable.ts#L62) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L71) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
-#### [[+]](src/concurrency.ts#L18) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
+#### [[+]](src/concurrency.ts#L21) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
 
 A simple asynchronous lock that helps queueing operations.
+
+#### [[+]](src/concurrency.ts#L32) `parallel<T>(values: T[], handler: ParallelHandler<T>, concurrency?: number): Promise<void>`
+
+Run tasks in parallel, similar to `v.map` but not mean to transform.
 
 #### [[+]](src/function.ts#L15) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
 
