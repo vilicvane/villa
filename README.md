@@ -139,6 +139,10 @@ Asynchronous version of `Array#reduce()`.
 
 Asynchronous version of `Array#filter()`.
 
+#### [[+]](src/array.ts#L150) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
+
+Asynchronous version of `Array#find()`.
+
 <!-- endcheat -->
 
 ## License

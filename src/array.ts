@@ -141,3 +141,19 @@ export async function filter<T>(values: T[], handler: FilterHandler<T>): Promise
 
     return results;
 }
+
+export type FindHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+
+/**
+ * Asynchronous version of `Array#find()`.
+ */
+export async function find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined> {
+    for (let i = 0; i < values.length; i++) {
+        let value = values[i];
+        if (await handler(value, i, values)) {
+            return value;
+        }
+    }
+
+    return undefined;
+}
