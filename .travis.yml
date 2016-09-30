@@ -5,6 +5,8 @@ before_script:
 - npm run build
 after_script:
 - npm run coveralls
+before_deploy:
+- npm run docheat-travis
 deploy:
   provider: npm
   email: i@vilic.info

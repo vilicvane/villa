@@ -8,6 +8,7 @@
     "clean": "rm -rf bld",
     "build": "tsc",
     "docheat": "docheat",
+    "docheat-travis": "docheat -b https://github.com/$TRAVIS_REPO_SLUG/blob/$TRAVIS_TAG/",
     "quick-test": "mocha",
     "test": "istanbul cover node_modules/mocha/bin/_mocha",
     "coveralls": "cat coverage/lcov.info | coveralls"
@@ -33,7 +34,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.13",
-    "docheat": "^0.1.1",
+    "docheat": "^0.1.3",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
     "source-map-support": "^0.4.2",
