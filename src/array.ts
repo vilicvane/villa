@@ -58,18 +58,16 @@ export async function map<T, TResult>(values: T[], transformer: MapTransformer<T
     }
 
     return new Promise<TResult[]>((resolve, reject) => {
-        let pending = 0;
-
-        let results = [] as TResult[];
-
-        let i = 0;
-
         let starting = Math.min(concurrency, values.length);
+        let results = [] as TResult[];
 
         if (starting <= 0) {
             resolve(results);
             return;
         }
+
+        let pending = 0;
+        let i = 0;
 
         while (i < starting) {
             next();

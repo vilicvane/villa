@@ -127,7 +127,7 @@ Asynchronous version of `Array#every()`.
 
 Asynchronous version of `Array#map()` with basic concurrency control.
 
-#### [[+]](src/array.ts#L119) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
+#### [[+]](src/array.ts#L117) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
 
 Asynchronous version of `Array#reduce()`.
 
@@ -135,11 +135,11 @@ Asynchronous version of `Array#reduce()`.
 
 - `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
 
-#### [[+]](src/array.ts#L132) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
+#### [[+]](src/array.ts#L130) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
 
 Asynchronous version of `Array#filter()`.
 
-#### [[+]](src/array.ts#L150) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
+#### [[+]](src/array.ts#L148) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
 
 Asynchronous version of `Array#find()`.
 
