@@ -20,9 +20,12 @@
   "keywords": [
     "async",
     "await",
-    "utility",
+    "collection",
     "helper",
-    "collection"
+    "helpers",
+    "promise",
+    "utility",
+    "utilities"
   ],
   "author": "vilicvane",
   "license": "MIT",
