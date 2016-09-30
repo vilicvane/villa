@@ -4,6 +4,7 @@ import {
     EachHandler,
     EveryHandler,
     FilterHandler,
+    FindHandler,
     MapTransformer,
     ParallelHandler,
     RaceTransformer,
@@ -12,6 +13,7 @@ import {
     each,
     every,
     filter,
+    find,
     map,
     reduce,
     some
@@ -30,6 +32,11 @@ export class Chainable<T> extends Promise<T[]> {
 
     filter(handler: FilterHandler<T>): Chainable<T> {
         return this.then(values => filter(values, handler)) as Chainable<T>;
+    }
+
+    find(handler: FindHandler<T>): Promise<T | undefined> {
+        let chainable = this.then(values => find(values, handler));
+        return Promise.resolve(chainable);
     }
 
     map<TResult>(transformer: MapTransformer<T, TResult>, concurrency?: number): Chainable<TResult> {

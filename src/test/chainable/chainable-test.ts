@@ -131,4 +131,18 @@ describe('Feature: chainable', () => {
         ret.should.not.be.an.instanceOf(Chainable);
         count.should.equal(3);
     });
+
+    it('Should work with `find`', async () => {
+        let count = 0;
+        let ret = chainable([1, 2, 3])
+            .find(async value => {
+                count++;
+
+                return value === 2;
+            });
+
+        (await ret)!.should.equal(2);
+        ret.should.not.be.an.instanceOf(Chainable);
+        count.should.equal(2);
+    });
 });

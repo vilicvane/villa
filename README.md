@@ -77,7 +77,7 @@ Create a promise for an event emitter.
 - `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
 - `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
-#### [[+]](src/chainable.ts#L72) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L79) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
