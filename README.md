@@ -77,7 +77,7 @@ Create a promise for an event emitter.
 - `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
 - `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
-#### [[+]](src/chainable.ts#L85) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L94) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
@@ -135,15 +135,23 @@ Asynchronous version of `Array#reduce()`.
 
 - `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
 
-#### [[+]](src/array.ts#L130) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
+#### [[+]](src/array.ts#L128) `reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
+
+Asynchronous version of `Array#reduceRight()`.
+
+##### Overloads:
+
+- `reduceRight<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
+
+#### [[+]](src/array.ts#L141) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
 
 Asynchronous version of `Array#filter()`.
 
-#### [[+]](src/array.ts#L148) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
+#### [[+]](src/array.ts#L159) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
 
 Asynchronous version of `Array#find()`.
 
-#### [[+]](src/array.ts#L162) `findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number>`
+#### [[+]](src/array.ts#L173) `findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number>`
 
 Asynchronous version of `Array#findIndex()`.
 

@@ -39,6 +39,38 @@ describe('Feature: chainable', () => {
         (await ret).should.equal(6);
     });
 
+    it('Should work with `reduceRight` and `each`', async () => {
+        let sum = 0;
+        let values = [[1], [2, 3], [4, 5, 6]];
+        let count = values.length;
+        let ret = chainable(values)
+            .reduceRight<number>(async (flatten, values, index) => {
+                index.should.equal(--count);
+                return flatten.concat(values);
+            }, [])
+            .each(async value => { sum += value; });
+
+        ret.should.not.be.an.instanceOf(Chainable);
+        (await ret).should.be.true;
+        sum.should.equal(21);
+    });
+
+    it('Should work with `reduceRight` that results in a non-array value', async () => {
+        let ret = chainable([1, 2, 3])
+            .reduceRight<number>(async (sum, value) => sum + value, 0);
+
+        ret.should.not.be.an.instanceOf(Chainable);
+        (await ret).should.equal(6);
+    });
+
+    it('Should work with `reduceRight` that has no intial value', async () => {
+        let ret = chainable([1, 2, 3])
+            .reduceRight(async (sum, value) => sum + value);
+
+        ret.should.not.be.an.instanceOf(Chainable);
+        (await ret).should.equal(6);
+    });
+
     it('Should work with `map` (with concurrency limit) and `every`', async () => {
         let count = 0;
         let processing = 0;

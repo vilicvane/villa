@@ -122,6 +122,17 @@ export async function reduce<T, TResult>(values: T[], transformer: ReduceTransfo
     }, ...args);
 }
 
+/**
+ * Asynchronous version of `Array#reduceRight()`.
+ */
+export async function reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
+export async function reduceRight<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>;
+export async function reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, ...args: any[]): Promise<TResult | undefined> {
+    return (values.reduceRight as Function)(async (result: TResult, value: T, index: number) => {
+        return transformer(await result, value, index, values);
+    }, ...args);
+}
+
 export type FilterHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
 
 /**

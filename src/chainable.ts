@@ -17,6 +17,7 @@ import {
     findIndex,
     map,
     reduce,
+    reduceRight,
     some
 } from './';
 
@@ -64,6 +65,14 @@ export class Chainable<T> extends Promise<T[]> {
     reduce(transformer: ReduceTransformer<T, T>): Promise<T>;
     reduce(transformer: ReduceTransformer<any, any>, ...args: any[]): Chainable<any> | Promise<any> {
         let chainable = this.then(values => (reduce as Function)(values, transformer, ...args));
+        return Array.isArray(args[0]) ? chainable as Chainable<any> : Promise.resolve(chainable);
+    }
+
+    reduceRight<TResult>(transformer: ReduceTransformer<T, TResult[]>, initial: TResult[]): Chainable<TResult>;
+    reduceRight<TResult>(transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
+    reduceRight(transformer: ReduceTransformer<T, T>): Promise<T>;
+    reduceRight(transformer: ReduceTransformer<any, any>, ...args: any[]): Chainable<any> | Promise<any> {
+        let chainable = this.then(values => (reduceRight as Function)(values, transformer, ...args));
         return Array.isArray(args[0]) ? chainable as Chainable<any> : Promise.resolve(chainable);
     }
 
