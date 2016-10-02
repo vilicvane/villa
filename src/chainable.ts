@@ -14,6 +14,7 @@ import {
     every,
     filter,
     find,
+    findIndex,
     map,
     reduce,
     some
@@ -36,6 +37,11 @@ export class Chainable<T> extends Promise<T[]> {
 
     find(handler: FindHandler<T>): Promise<T | undefined> {
         let chainable = this.then(values => find(values, handler));
+        return Promise.resolve(chainable);
+    }
+
+    findIndex(handler: FindHandler<T>): Promise<number> {
+        let chainable = this.then(values => findIndex(values, handler));
         return Promise.resolve(chainable);
     }
 

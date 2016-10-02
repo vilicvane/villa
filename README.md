@@ -77,7 +77,7 @@ Create a promise for an event emitter.
 - `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
 - `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
-#### [[+]](src/chainable.ts#L79) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L85) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
@@ -142,6 +142,10 @@ Asynchronous version of `Array#filter()`.
 #### [[+]](src/array.ts#L148) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
 
 Asynchronous version of `Array#find()`.
+
+#### [[+]](src/array.ts#L162) `findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number>`
+
+Asynchronous version of `Array#findIndex()`.
 
 <!-- endcheat -->
 

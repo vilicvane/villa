@@ -155,3 +155,16 @@ export async function find<T>(values: T[], handler: FindHandler<T>): Promise<T |
 
     return undefined;
 }
+
+/**
+ * Asynchronous version of `Array#findIndex()`.
+ */
+export async function findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number> {
+    for (let i = 0; i < values.length; i++) {
+        if (await handler(values[i], i, values)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
