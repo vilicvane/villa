@@ -20,7 +20,8 @@ different APIs, while an `async` function always returns native promise object.
 
 While most of the promise use cases so far can be addressed using
 `async`/`await` with simple helpers, I created villa with my favorite features
-from my own promise library [ThenFail](https://github.com/vilic/thenfail).
+from my own promise library [ThenFail](https://github.com/vilic/thenfail) and
+more.
 
 ## Installation
 
