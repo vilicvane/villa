@@ -1,6 +1,11 @@
 import { Resolvable } from './';
 
 /**
+ * A no-operation function that acts as the rejection handler of a promise.
+ */
+export function bear(error: any): void { }
+
+/**
  * Create a promise that will be fulfilled in given duration (milliseconds).
  * @param duration Duration in milliseconds before the promise gets fulfilled.
  */

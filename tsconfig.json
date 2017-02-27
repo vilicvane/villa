@@ -15,6 +15,7 @@
         "rootDir": "src"
     },
     "exclude": [
+        "bld",
         "node_modules"
     ]
 }
