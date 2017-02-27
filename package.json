@@ -5,6 +5,7 @@
   "main": "bld/index.js",
   "typings": "bld/index.d.ts",
   "scripts": {
+    "tsc": "tsc",
     "clean": "rm -rf bld",
     "build": "tsc",
     "docheat": "docheat",
@@ -34,6 +35,9 @@
   },
   "homepage": "https://github.com/vilic/villa#readme",
   "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.39",
+    "@types/node": "^7.0.5",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.13",
@@ -41,6 +45,6 @@
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
     "source-map-support": "^0.4.2",
-    "typescript": "^2.0.3"
+    "typescript": "^2.2.1"
   }
 }

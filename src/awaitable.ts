@@ -69,7 +69,8 @@ function eventEmitterAwaitableCreator<T>(
 
         if (Array.isArray(assertion)) {
             errorEmitters = assertion;
-            assertion = undefined;
+            // TODO: possibly a bug of TypeScript 2.2, adding ! temporarily.
+            assertion = undefined!;
         }
     } else {
         errorEmitters = types as EventEmitter[] | undefined;
@@ -77,7 +78,8 @@ function eventEmitterAwaitableCreator<T>(
         let options = getEventEmitterAwaitableOptions(emitter);
 
         types = options.types;
-        assertion = options.assertion;
+        // TODO: possibly a bug of TypeScript 2.2, adding ! temporarily.
+        assertion = options.assertion!;
     }
 
     if (!errorEmitters) {
