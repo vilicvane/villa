@@ -3,7 +3,9 @@ import { Resolvable } from './';
 /**
  * A no-operation function that acts as the rejection handler of a promise.
  */
-export function bear(error: any): void { }
+export function bear(error: any): undefined {
+    return undefined;
+}
 
 /**
  * Create a promise that will be fulfilled in given duration (milliseconds).

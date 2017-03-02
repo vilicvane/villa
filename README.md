@@ -104,15 +104,15 @@ promise.
 Wrap a Node.js-style asynchronous function to a function that returns
 promise.
 
-#### [[+]](src/miscellaneous.ts#L6) `bear(error: any): void`
+#### [[+]](src/miscellaneous.ts#L6) `bear(error: any): undefined`
 
 A no-operation function that acts as the rejection handler of a promise.
 
-#### [[+]](src/miscellaneous.ts#L12) `sleep(duration: number): Promise<void>`
+#### [[+]](src/miscellaneous.ts#L14) `sleep(duration: number): Promise<void>`
 
 Create a promise that will be fulfilled in given duration (milliseconds).
 
-#### [[+]](src/miscellaneous.ts#L31) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
+#### [[+]](src/miscellaneous.ts#L33) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
 
 Retry procedure in the handler for several times.
 
