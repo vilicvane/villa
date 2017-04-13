@@ -12,7 +12,7 @@ featured promise libraries like
 [Q](https://github.com/kriskowal/q). But with the growing adoption of
 `async`/`await` provided by ES-next (via transpilers like
 [TypeScript](http://www.typescriptlang.org/) and [Babel](http://babeljs.io/)),
-some cretical features provided by those libraries become less relevant.
+some critical features provided by those libraries become less relevant.
 
 And there is another problem with third-party promise for code using
 `async`/`await`: it could be confusing having different promise instances with
