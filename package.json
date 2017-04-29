@@ -45,6 +45,6 @@
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
     "source-map-support": "^0.4.2",
-    "typescript": "~2.2.1"
+    "typescript": "~2.3.2"
   }
 }
