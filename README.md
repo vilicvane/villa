@@ -69,7 +69,7 @@ async function copyAll(sourceDir, targetDir) {
 
 #### [[+]](src/awaitable.ts#L14) `awaitable<T>(target: any, ...args: any[]): Promise<T>`
 
-Create a promise for an event emitter.
+Create a promise for an object.
 
 #### [[+]](src/chainable.ts#L94) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 

@@ -4,7 +4,7 @@ type AwaitableCreator<T> = <T>(target: any, ...args: any[]) => Promise<T> | unde
 export const awaitableCreators = [] as AwaitableCreator<any>[];
 
 /**
- * Create a promise for an event emitter.
+ * Create a promise for an object.
  * @param emitter The emitter to listen on 'error' event for rejection, and
  *     given event types for fulfillment.
  * @param type A string or an array of string of event types for fulfillment.
