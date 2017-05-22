@@ -1,16 +1,18 @@
 {
   "name": "villa",
-  "version": "0.2.11",
+  "version": "0.3.0",
   "description": "Promise utilities for async/await-ready environment.",
-  "main": "bld/index.js",
-  "typings": "bld/index.d.ts",
+  "main": "bld/edge/index.js",
+  "browser": "bld/es5/index.js",
+  "types": "bld/types/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf bld",
-    "build": "tsc",
+    "build:edge": "tsc -p tsconfig.edge.json",
+    "build:es5": "tsc -p tsconfig.es5.json",
     "docheat": "docheat",
     "docheat-travis": "docheat -b https://github.com/$TRAVIS_REPO_SLUG/blob/$TRAVIS_TAG/",
-    "quick-test": "mocha",
+    "bare-test": "mocha",
     "test": "istanbul cover node_modules/mocha/bin/_mocha",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },

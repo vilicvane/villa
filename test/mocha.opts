@@ -1,4 +1,4 @@
 --require ./test/mocha
 --recursive
 
-bld/test
+bld/edge/test

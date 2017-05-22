@@ -1,10 +1,12 @@
 /coverage/
 
-/bld/test/
+/bld/*/test/
+/bld/local/
 /src/
 /test/
 /typings/
 
 /tsconfig.json
+/tsconfig.*.json
 
 .*

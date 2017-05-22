@@ -24,7 +24,7 @@ describe('Feature: race', () => {
                 value.should.equal(values[index]);
                 throw error;
             } else {
-                return new Promise(resolve => setTimeout(resolve));
+                return new Promise<void>(resolve => setTimeout(resolve, 0));
             }
         });
 

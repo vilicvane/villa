@@ -6,6 +6,8 @@ import { expect } from 'chai';
 
 import { awaitable } from '../../';
 
+import '../../node';
+
 let testError = new Error();
 
 let testValue = {

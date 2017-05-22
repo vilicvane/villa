@@ -1,21 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "esnext",
         "module": "commonjs",
         "noEmitOnError": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "strictNullChecks": true,
+        "strict": true,
         "stripInternal": true,
-        "declaration": true,
         "sourceMap": true,
         "newLine": "LF",
-        "outDir": "bld",
-        "rootDir": "src"
+        "rootDir": "src",
+        "outDir": "bld/local"
     },
     "exclude": [
         "bld",
+        "platform",
         "node_modules"
     ]
 }
