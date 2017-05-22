@@ -67,16 +67,9 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [[+]](src/awaitable.ts#L136) `awaitable(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<void>`<sup>+4</sup>
+#### [[+]](src/awaitable.ts#L14) `awaitable<T>(target: any, ...args: any[]): Promise<T>`
 
 Create a promise for an event emitter.
-
-##### Overloads:
-
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], errorEmitters?: EventEmitter[]): Promise<T>`
-- `awaitable<T>(emitter: EventEmitter, types: string | string[], assertion: EventEmitterResultAssertion<T>, errorEmitters?: EventEmitter[]): Promise<T>`
-- `awaitable(process: ChildProcess, errorEmitters?: EventEmitter[]): Promise<void>`
-- `awaitable(stream: Readable | Writable, errorEmitters?: EventEmitter[]): Promise<void>`
 
 #### [[+]](src/chainable.ts#L94) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
