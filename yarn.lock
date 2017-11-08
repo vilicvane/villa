@@ -275,9 +275,9 @@ check-error@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/check-error/download/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-clime-glob@^0.2.1:
-  version "0.2.1"
-  resolved "http://registry.npm.taobao.org/clime-glob/download/clime-glob-0.2.1.tgz#d9942324931f47885c62d228f1838c2ee599bb69"
+clime-glob@^0.2.3:
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/clime-glob/download/clime-glob-0.2.3.tgz#7598cdc5abfa4d917506164142d8767f3d968e72"
   dependencies:
     globby "^6.1.0"
 
@@ -413,14 +413,14 @@ diff@^3.2.0:
   version "3.4.0"
   resolved "http://registry.npm.taobao.org/diff/download/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
 
-docheat@^0.1.5:
-  version "0.1.5"
-  resolved "http://registry.npm.taobao.org/docheat/download/docheat-0.1.5.tgz#fb71e69101cce9fbdd5040e49a3f888760289d4a"
+docheat@^0.1.8:
+  version "0.1.8"
+  resolved "http://registry.npm.taobao.org/docheat/download/docheat-0.1.8.tgz#771a2f90a7f091c88dba4703b75f8cccf1820c31"
   dependencies:
     clime "^0.5.9"
-    clime-glob "^0.2.1"
+    clime-glob "^0.2.3"
     source-map-support "^0.4.2"
-    villa "0.3.0"
+    villa "^0.3.0"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -1229,13 +1229,13 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-villa@0.3.0:
-  version "0.3.0"
-  resolved "http://registry.npm.taobao.org/villa/download/villa-0.3.0.tgz#2651a40c64ca1eeec89f15083e53e38f21cf6d14"
-
 villa@^0.2.11:
   version "0.2.11"
   resolved "http://registry.npm.taobao.org/villa/download/villa-0.2.11.tgz#a99a1c0ac01025b7311bb550c1fa7f8e6570692a"
+
+villa@^0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/villa/download/villa-0.3.0.tgz#2651a40c64ca1eeec89f15083e53e38f21cf6d14"
 
 vts@^5.8.1:
   version "5.8.1"
