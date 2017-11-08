@@ -1,49 +1,51 @@
-import { some } from '../../';
+// tslint:disable:no-unused-expression
+
+import {some} from '../..';
 
 describe('Feature: some', () => {
-    it('Should iterate all unmatched values and result in `false`', async () => {
-        let count = 0;
-        let values = [1, 2, 3];
+  it('Should iterate all unmatched values and result in `false`', async () => {
+    let count = 0;
+    let values = [1, 2, 3];
 
-        let result = await some(values, async (value, index, array) => {
-            index.should.equal(count++);
-            array.should.equal(values);
-            return false;
-        });
-
-        count.should.equal(values.length);
-        result.should.be.false;
+    let result = await some(values, async (_value, index, array) => {
+      index.should.equal(count++);
+      array.should.equal(values);
+      return false;
     });
 
-    it('Should break if any match found and result in `true`', async () => {
-        let count = 0;
-        let values = [1, 2, 3];
+    count.should.equal(values.length);
+    result.should.be.false;
+  });
 
-        let result = await some(values, async (value, index, array) => {
-            if (value === 2) {
-                return true;
-            }
+  it('Should break if any match found and result in `true`', async () => {
+    let count = 0;
+    let values = [1, 2, 3];
 
-            count++;
-            return false;
-        });
+    let result = await some(values, async value => {
+      if (value === 2) {
+        return true;
+      }
 
-        count.should.equal(1);
-        result.should.be.true;
+      count++;
+      return false;
     });
 
-    it('Should handle exception', async () => {
-        let values = [1, 2, 3];
-        let error = new Error('exception');
+    count.should.equal(1);
+    result.should.be.true;
+  });
 
-        let ret = some(values, async (value, index) => {
-            if (index === 1) {
-                throw error;
-            }
+  it('Should handle exception', async () => {
+    let values = [1, 2, 3];
+    let error = new Error('exception');
 
-            return false;
-        });
+    let ret = some(values, async (_value, index) => {
+      if (index === 1) {
+        throw error;
+      }
 
-        await ret.should.be.rejectedWith(error);
+      return false;
     });
+
+    await ret.should.be.rejectedWith(error);
+  });
 });

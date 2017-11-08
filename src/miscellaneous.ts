@@ -1,10 +1,10 @@
-import { Resolvable } from './';
+import {Resolvable} from '.';
 
 /**
  * A no-operation function that acts as the rejection handler of a promise.
  */
-export function bear(error: any): undefined {
-    return undefined;
+export function bear(_error: any): undefined {
+  return;
 }
 
 /**
@@ -12,16 +12,19 @@ export function bear(error: any): undefined {
  * @param duration Duration in milliseconds before the promise gets fulfilled.
  */
 export function sleep(duration: number): Promise<void> {
-    return new Promise<void>(resolve => setTimeout(resolve, duration));
+  return new Promise<void>(resolve => setTimeout(resolve, duration));
 }
 
-export type RetryHandler<TResult> = (lastReason: any, attempts: number) => Resolvable<TResult>;
+export type RetryHandler<TResult> = (
+  lastReason: any,
+  attempts: number,
+) => Resolvable<TResult>;
 
 export interface RetryOptions {
-    /** Try limit times (defaults to 3). */
-    limit?: number;
-    /** Interval between two tries (defaults to 0). */
-    interval?: number;
+  /** Try limit times (defaults to 3). */
+  limit?: number;
+  /** Interval between two tries (defaults to 0). */
+  interval?: number;
 }
 
 /**
@@ -30,23 +33,23 @@ export interface RetryOptions {
  * @param options Retry options.
  * @return Created promise.
  */
-export async function retry<T>(handler: RetryHandler<T>, options: RetryOptions = {}): Promise<T> {
-    let {
-        limit = 3,
-        interval = 0
-    } = options;
+export async function retry<T>(
+  handler: RetryHandler<T>,
+  options: RetryOptions = {},
+): Promise<T> {
+  let {limit = 3, interval = 0} = options;
 
-    let lastError: any;
+  let lastError: any;
 
-    for (let i = 0; i < limit; i++) {
-        try {
-            return await handler(lastError, i);
-        } catch (error) {
-            lastError = error;
-        }
-
-        await sleep(interval);
+  for (let i = 0; i < limit; i++) {
+    try {
+      return await handler(lastError, i);
+    } catch (error) {
+      lastError = error;
     }
 
-    throw lastError;
+    await sleep(interval);
+  }
+
+  throw lastError;
 }

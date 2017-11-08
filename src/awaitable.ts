@@ -1,4 +1,7 @@
-type AwaitableCreator<T> = <T>(target: any, ...args: any[]) => Promise<T> | undefined;
+type AwaitableCreator<T> = (
+  target: any,
+  ...args: any[]
+) => Promise<T> | undefined;
 
 /** @internal */
 export const awaitableCreators = [] as AwaitableCreator<any>[];
@@ -12,13 +15,15 @@ export const awaitableCreators = [] as AwaitableCreator<any>[];
  *     rejection.
  */
 export function awaitable<T>(target: any, ...args: any[]): Promise<T> {
-    for (let creator of awaitableCreators) {
-        let promise = creator<T>(target, ...args);
+  for (let creator of awaitableCreators) {
+    let promise = creator(target, ...args);
 
-        if (promise) {
-            return promise;
-        }
+    if (promise) {
+      return promise;
     }
+  }
 
-    throw new TypeError('Cannot create awaitable from the target object with given arguments');
+  throw new TypeError(
+    'Cannot create awaitable from the target object with given arguments',
+  );
 }

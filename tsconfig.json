@@ -1,18 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "commonjs",
-        "noEmitOnError": true,
-        "strict": true,
-        "stripInternal": true,
-        "sourceMap": true,
-        "newLine": "LF",
-        "rootDir": "src",
-        "outDir": "bld/local"
-    },
-    "exclude": [
-        "bld",
-        "platform",
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "importHelpers": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "stripInternal": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "newLine": "LF",
+    "rootDir": "src",
+    "outDir": "bld/local",
+    "plugins": [{"name": "tslint-language-service"}]
+  },
+  "exclude": ["bld", "platform", "node_modules"]
 }

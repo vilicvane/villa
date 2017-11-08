@@ -6,14 +6,14 @@
   "browser": "bld/es5/index.js",
   "types": "bld/types/index.d.ts",
   "scripts": {
-    "tsc": "tsc",
     "clean": "rm -rf bld",
+    "lint": "tslint -c tslint.json -p tsconfig.edge.json",
     "build:edge": "tsc -p tsconfig.edge.json",
     "build:es5": "tsc -p tsconfig.es5.json",
-    "docheat": "docheat",
+    "build": "yarn build:edge && yarn build:es5",
     "docheat-travis": "docheat -b https://github.com/$TRAVIS_REPO_SLUG/blob/$TRAVIS_TAG/",
     "bare-test": "mocha",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha",
+    "test": "yarn lint && istanbul cover node_modules/mocha/bin/_mocha",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -38,15 +38,23 @@
   "homepage": "https://github.com/vilic/villa#readme",
   "devDependencies": {
     "@types/chai": "^3.4.35",
+    "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^2.2.39",
-    "@types/node": "^7.0.5",
+    "@types/node": "^8.0.50",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.13",
     "docheat": "^0.1.4",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
+    "prettier": "^1.8.1",
     "source-map-support": "^0.4.2",
-    "typescript": "~2.3.2"
+    "tslint": "^5.8.0",
+    "tslint-language-service": "^0.9.6",
+    "typescript": "^2.6.1",
+    "vts": "^5.8.1"
+  },
+  "dependencies": {
+    "tslib": "^1.8.0"
   }
 }

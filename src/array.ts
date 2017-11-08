@@ -1,181 +1,259 @@
-import {
-    Resolvable
-} from './';
+import {Resolvable} from '.';
 
-export type EachHandler<T> = (value: T, index: number, values: T[]) => Resolvable<void | boolean>;
+export type EachHandler<T> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<void | boolean>;
 
 /**
  * Asynchronous version of `Array#forEach()`.
  */
-export async function each<T>(values: T[], handler: EachHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (await handler(values[i], i, values) === false) {
-            return false;
-        }
+export async function each<T>(
+  values: T[],
+  handler: EachHandler<T>,
+): Promise<boolean> {
+  for (let i = 0; i < values.length; i++) {
+    if ((await handler(values[i], i, values)) === false) {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
 
-export type SomeHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+export type SomeHandler<T> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<boolean>;
 
 /**
  * Asynchronous version of `Array#some()`.
  */
-export async function some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (await handler(values[i], i, values)) {
-            return true;
-        }
+export async function some<T>(
+  values: T[],
+  handler: SomeHandler<T>,
+): Promise<boolean> {
+  for (let i = 0; i < values.length; i++) {
+    if (await handler(values[i], i, values)) {
+      return true;
     }
+  }
 
-    return false;
+  return false;
 }
 
-export type EveryHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+export type EveryHandler<T> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<boolean>;
 
 /**
  * Asynchronous version of `Array#every()`.
  */
-export async function every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean> {
-    for (let i = 0; i < values.length; i++) {
-        if (!await handler(values[i], i, values)) {
-            return false;
-        }
+export async function every<T>(
+  values: T[],
+  handler: EveryHandler<T>,
+): Promise<boolean> {
+  for (let i = 0; i < values.length; i++) {
+    if (!await handler(values[i], i, values)) {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
 
-export type MapTransformer<T, TResult> = (value: T, index: number, values: T[]) => Resolvable<TResult>;
+export type MapTransformer<T, TResult> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<TResult>;
 
 /**
  * Asynchronous version of `Array#map()` with basic concurrency control.
  */
-export async function map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]> {
-    if (typeof concurrency !== 'number') {
-        return Promise.all(values.map(transformer));
+export async function map<T, TResult>(
+  values: T[],
+  transformer: MapTransformer<T, TResult>,
+  concurrency?: number,
+): Promise<TResult[]> {
+  if (typeof concurrency !== 'number') {
+    return Promise.all(values.map(transformer));
+  }
+
+  return new Promise<TResult[]>((resolve, reject) => {
+    let starting = Math.min(concurrency, values.length);
+    let results = [] as TResult[];
+
+    if (starting <= 0) {
+      resolve(results);
+      return;
     }
 
-    return new Promise<TResult[]>((resolve, reject) => {
-        let starting = Math.min(concurrency, values.length);
-        let results = [] as TResult[];
+    let pending = 0;
+    let i = 0;
 
-        if (starting <= 0) {
-            resolve(results);
-            return;
+    while (i < starting) {
+      next();
+    }
+
+    function next(): void {
+      if (i === values.length) {
+        if (!pending) {
+          resolve(results);
         }
 
-        let pending = 0;
-        let i = 0;
+        return;
+      }
 
-        while (i < starting) {
-            next();
-        }
+      let index = i++;
+      let value = values[index];
 
-        function next(): void {
-            if (i === values.length) {
-                if (!pending) {
-                    resolve(results);
-                }
+      pending++;
 
-                return;
-            }
+      let ret: Resolvable<TResult>;
 
-            let index = i++;
-            let value = values[index];
+      try {
+        ret = transformer(value, index, values);
+      } catch (error) {
+        reject(error);
+        return;
+      }
 
-            pending++;
-
-            let ret: Resolvable<TResult>;
-
-            try {
-                ret = transformer(value, index, values);
-            } catch (error) {
-                reject(error);
-                return;
-            }
-
-            Promise
-                .resolve(ret)
-                .then(result => {
-                    results[index] = result;
-                    pending--;
-                    next();
-                }, error => {
-                    reject(error);
-                });
-        }
-    });
+      Promise.resolve(ret).then(
+        result => {
+          results[index] = result;
+          pending--;
+          next();
+        },
+        error => {
+          reject(error);
+        },
+      );
+    }
+  });
 }
 
-export type ReduceTransformer<T, TResult> = (result: TResult, value: T, index: number, values: T[]) => Resolvable<TResult>;
+export type ReduceTransformer<T, TResult> = (
+  result: TResult,
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<TResult>;
 
 /**
  * Asynchronous version of `Array#reduce()`.
  */
-export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
-export async function reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>;
-export async function reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, ...args: any[]): Promise<TResult | undefined> {
-    return (values.reduce as Function)(async (result: TResult, value: T, index: number) => {
-        return transformer(await result, value, index, values);
-    }, ...args);
+export async function reduce<T, TResult>(
+  values: T[],
+  transformer: ReduceTransformer<T, TResult>,
+  initial: TResult,
+): Promise<TResult>;
+export async function reduce<T>(
+  values: T[],
+  transformer: ReduceTransformer<T, T>,
+): Promise<T | undefined>;
+export async function reduce<T, TResult>(
+  values: T[],
+  transformer: ReduceTransformer<T, TResult>,
+  ...args: any[]
+): Promise<TResult | undefined> {
+  return (values.reduce as Function)(
+    async (result: TResult, value: T, index: number) => {
+      return transformer(await result, value, index, values);
+    },
+    ...args,
+  );
 }
 
 /**
  * Asynchronous version of `Array#reduceRight()`.
  */
-export async function reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>;
-export async function reduceRight<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>;
-export async function reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, ...args: any[]): Promise<TResult | undefined> {
-    return (values.reduceRight as Function)(async (result: TResult, value: T, index: number) => {
-        return transformer(await result, value, index, values);
-    }, ...args);
+export async function reduceRight<T, TResult>(
+  values: T[],
+  transformer: ReduceTransformer<T, TResult>,
+  initial: TResult,
+): Promise<TResult>;
+export async function reduceRight<T>(
+  values: T[],
+  transformer: ReduceTransformer<T, T>,
+): Promise<T | undefined>;
+export async function reduceRight<T, TResult>(
+  values: T[],
+  transformer: ReduceTransformer<T, TResult>,
+  ...args: any[]
+): Promise<TResult | undefined> {
+  return (values.reduceRight as Function)(
+    async (result: TResult, value: T, index: number) => {
+      return transformer(await result, value, index, values);
+    },
+    ...args,
+  );
 }
 
-export type FilterHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+export type FilterHandler<T> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<boolean>;
 
 /**
  * Asynchronous version of `Array#filter()`.
  */
-export async function filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]> {
-    let results = [] as T[];
+export async function filter<T>(
+  values: T[],
+  handler: FilterHandler<T>,
+): Promise<T[]> {
+  let results = [] as T[];
 
-    for (let i = 0; i < values.length; i++) {
-        let value = values[i];
-        if (await handler(value, i, values)) {
-            results.push(value);
-        }
+  for (let i = 0; i < values.length; i++) {
+    let value = values[i];
+    if (await handler(value, i, values)) {
+      results.push(value);
     }
+  }
 
-    return results;
+  return results;
 }
 
-export type FindHandler<T> = (value: T, index: number, values: T[]) => Resolvable<boolean>;
+export type FindHandler<T> = (
+  value: T,
+  index: number,
+  values: T[],
+) => Resolvable<boolean>;
 
 /**
  * Asynchronous version of `Array#find()`.
  */
-export async function find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined> {
-    for (let i = 0; i < values.length; i++) {
-        let value = values[i];
-        if (await handler(value, i, values)) {
-            return value;
-        }
+export async function find<T>(
+  values: T[],
+  handler: FindHandler<T>,
+): Promise<T | undefined> {
+  for (let i = 0; i < values.length; i++) {
+    let value = values[i];
+    if (await handler(value, i, values)) {
+      return value;
     }
+  }
 
-    return undefined;
+  return undefined;
 }
 
 /**
  * Asynchronous version of `Array#findIndex()`.
  */
-export async function findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number> {
-    for (let i = 0; i < values.length; i++) {
-        if (await handler(values[i], i, values)) {
-            return i;
-        }
+export async function findIndex<T>(
+  values: T[],
+  handler: FindHandler<T>,
+): Promise<number> {
+  for (let i = 0; i < values.length; i++) {
+    if (await handler(values[i], i, values)) {
+      return i;
     }
+  }
 
-    return -1;
+  return -1;
 }

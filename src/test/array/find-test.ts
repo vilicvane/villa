@@ -1,51 +1,54 @@
-import { expect } from 'chai';
+// tslint:disable:no-unused-expression
+// tslint:disable:no-implicit-dependencies
 
-import { find } from '../../';
+import {expect} from 'chai';
+
+import {find} from '../..';
 
 describe('Feature: find', () => {
-    it('Should iterate all unmatched values and result in `undefined`', async () => {
-        let count = 0;
-        let values = [1, 2, 3];
+  it('Should iterate all unmatched values and result in `undefined`', async () => {
+    let count = 0;
+    let values = [1, 2, 3];
 
-        let result = await find(values, async (value, index, array) => {
-            index.should.equal(count++);
-            array.should.equal(values);
-            return false;
-        });
-
-        count.should.equal(values.length);
-        expect(result).to.be.undefined;
+    let result = await find(values, async (_value, index, array) => {
+      index.should.equal(count++);
+      array.should.equal(values);
+      return false;
     });
 
-    it('Should break if any match found and result in the value found', async () => {
-        let count = 0;
-        let values = [1, 2, 3];
+    count.should.equal(values.length);
+    expect(result).to.be.undefined;
+  });
 
-        let result = await find(values, async (value, index, array) => {
-            if (value === 2) {
-                return true;
-            }
+  it('Should break if any match found and result in the value found', async () => {
+    let count = 0;
+    let values = [1, 2, 3];
 
-            count++;
-            return false;
-        });
+    let result = await find(values, async value => {
+      if (value === 2) {
+        return true;
+      }
 
-        count.should.equal(1);
-        result!.should.equal(2);
+      count++;
+      return false;
     });
 
-    it('Should handle exception', async () => {
-        let values = [1, 2, 3];
-        let error = new Error('exception');
+    count.should.equal(1);
+    result!.should.equal(2);
+  });
 
-        let ret = find(values, async (value, index) => {
-            if (index === 1) {
-                throw error;
-            }
+  it('Should handle exception', async () => {
+    let values = [1, 2, 3];
+    let error = new Error('exception');
 
-            return false;
-        });
+    let ret = find(values, async (_value, index) => {
+      if (index === 1) {
+        throw error;
+      }
 
-        await ret.should.be.rejectedWith(error);
+      return false;
     });
+
+    await ret.should.be.rejectedWith(error);
+  });
 });

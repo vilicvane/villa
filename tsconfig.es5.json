@@ -1,10 +1,7 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "target": "es5",
-        "lib": [
-            "esnext"
-        ],
-        "outDir": "bld/es5"
-    }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "bld/es5"
+  }
 }

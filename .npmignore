@@ -4,9 +4,13 @@
 /bld/local/
 /src/
 /test/
-/typings/
+/types/
 
 /tsconfig.json
 /tsconfig.*.json
+/tslint.json
+/prettier.config.js
+
+/yarn.lock
 
 .*
