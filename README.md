@@ -39,6 +39,9 @@ import * as Path from 'path';
 
 import * as v from 'villa';
 
+// Add support for Node.js specific features, e.g. awaitable for Node.js objects.
+import 'villa/platform/node';
+
 async function copy(source, target) {
     let readStream = FS.createReadStream(source);
     let writeStream = FS.createWriteStream(target);
