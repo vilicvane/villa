@@ -44,7 +44,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.13",
-    "docheat": "^0.1.4",
+    "docheat": "^0.1.5",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.2",
     "prettier": "^1.8.1",

@@ -67,37 +67,37 @@ async function copyAll(sourceDir, targetDir) {
 
 <!-- docheat:functions -->
 
-#### [[+]](src/awaitable.ts#L14) `awaitable<T>(target: any, ...args: any[]): Promise<T>`
+#### [[+]](src/awaitable.ts#L17) `awaitable<T>(target: any, ...args: any[]): Promise<T>`
 
 Create a promise for an object.
 
-#### [[+]](src/chainable.ts#L94) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
+#### [[+]](src/chainable.ts#L124) `chainable<T>(resolvable: Resolvable<T[]>): Chainable<T>`
 
 Wrap given resolvable with a chainable derived of built-in promise.
 
-#### [[+]](src/concurrency.ts#L21) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
+#### [[+]](src/concurrency.ts#L18) `lock<T>(object: any, handler: LockHandler<T>): Promise<T>`
 
 A simple asynchronous lock that helps queueing operations.
 
-#### [[+]](src/concurrency.ts#L32) `parallel<T>(values: T[], handler: ParallelHandler<T>, concurrency?: number): Promise<void>`
+#### [[+]](src/concurrency.ts#L36) `parallel<T>(values: T[], handler: ParallelHandler<T>, concurrency?: number): Promise<void>`
 
 Run tasks in parallel, similar to `v.map` but not mean to transform.
 
-#### [[+]](src/concurrency.ts#L41) `race<T, TResult>(values: T[], transformer: RaceTransformer<T, TResult>): Promise<TResult>`
+#### [[+]](src/concurrency.ts#L53) `race<T, TResult>(values: T[], transformer: RaceTransformer<T, TResult>): Promise<TResult>`
 
 Race tasks and fulfill or reject as soon as one of them fulfills or rejects.
 
-#### [[+]](src/function.ts#L15) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
+#### [[+]](src/function.ts#L21) `call<T>(fn: NodeStyleAsyncFunction<T>, ...args: any[]): Promise<T>`
 
 Call a Node.js-style asynchronous function and return a correspondent
 promise.
 
-#### [[+]](src/function.ts#L33) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
+#### [[+]](src/function.ts#L42) `async<T>(fn: NodeStyleAsyncFunction<T>): AsyncFunction<T>`
 
 Wrap a Node.js-style asynchronous function to a function that returns
 promise.
 
-#### [[+]](src/miscellaneous.ts#L6) `bear(error: any): undefined`
+#### [[+]](src/miscellaneous.ts#L6) `bear(_error: any): undefined`
 
 A no-operation function that acts as the rejection handler of a promise.
 
@@ -105,27 +105,27 @@ A no-operation function that acts as the rejection handler of a promise.
 
 Create a promise that will be fulfilled in given duration (milliseconds).
 
-#### [[+]](src/miscellaneous.ts#L33) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
+#### [[+]](src/miscellaneous.ts#L36) `retry<T>(handler: RetryHandler<T>, options?: RetryOptions): Promise<T>`
 
 Retry procedure in the handler for several times.
 
-#### [[+]](src/array.ts#L10) `each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L12) `each<T>(values: T[], handler: EachHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#forEach()`.
 
-#### [[+]](src/array.ts#L25) `some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L34) `some<T>(values: T[], handler: SomeHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#some()`.
 
-#### [[+]](src/array.ts#L40) `every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`
+#### [[+]](src/array.ts#L56) `every<T>(values: T[], handler: EveryHandler<T>): Promise<boolean>`
 
 Asynchronous version of `Array#every()`.
 
-#### [[+]](src/array.ts#L55) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`
+#### [[+]](src/array.ts#L78) `map<T, TResult>(values: T[], transformer: MapTransformer<T, TResult>, concurrency?: number): Promise<TResult[]>`
 
 Asynchronous version of `Array#map()` with basic concurrency control.
 
-#### [[+]](src/array.ts#L117) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
+#### [[+]](src/array.ts#L150) `reduce<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
 
 Asynchronous version of `Array#reduce()`.
 
@@ -133,7 +133,7 @@ Asynchronous version of `Array#reduce()`.
 
 - `reduce<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
 
-#### [[+]](src/array.ts#L128) `reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
+#### [[+]](src/array.ts#L175) `reduceRight<T, TResult>(values: T[], transformer: ReduceTransformer<T, TResult>, initial: TResult): Promise<TResult>`<sup>+1</sup>
 
 Asynchronous version of `Array#reduceRight()`.
 
@@ -141,15 +141,15 @@ Asynchronous version of `Array#reduceRight()`.
 
 - `reduceRight<T>(values: T[], transformer: ReduceTransformer<T, T>): Promise<T | undefined>`
 
-#### [[+]](src/array.ts#L141) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
+#### [[+]](src/array.ts#L206) `filter<T>(values: T[], handler: FilterHandler<T>): Promise<T[]>`
 
 Asynchronous version of `Array#filter()`.
 
-#### [[+]](src/array.ts#L159) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
+#### [[+]](src/array.ts#L231) `find<T>(values: T[], handler: FindHandler<T>): Promise<T | undefined>`
 
 Asynchronous version of `Array#find()`.
 
-#### [[+]](src/array.ts#L173) `findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number>`
+#### [[+]](src/array.ts#L248) `findIndex<T>(values: T[], handler: FindHandler<T>): Promise<number>`
 
 Asynchronous version of `Array#findIndex()`.
 

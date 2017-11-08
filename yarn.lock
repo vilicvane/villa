@@ -48,6 +48,10 @@ ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
 
+ansi-regex@^3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-3.0.0.tgz#ed0317c322064f79466c02966bddb605ab37d998"
+
 ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "http://registry.npm.taobao.org/ansi-styles/download/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
@@ -271,21 +275,23 @@ check-error@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/check-error/download/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-clime-glob@^0.1.1:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/clime-glob/download/clime-glob-0.1.1.tgz#3e2510e7349ac81d7a536f3435341d0bc6bf9272"
+clime-glob@^0.2.1:
+  version "0.2.1"
+  resolved "http://registry.npm.taobao.org/clime-glob/download/clime-glob-0.2.1.tgz#d9942324931f47885c62d228f1838c2ee599bb69"
   dependencies:
-    globby "^6.0.0"
+    globby "^6.1.0"
 
-clime@^0.4.3:
-  version "0.4.4"
-  resolved "http://registry.npm.taobao.org/clime/download/clime-0.4.4.tgz#1e0220435c038043152072bc4a1b43f8fc9ccac5"
+clime@^0.5.9:
+  version "0.5.9"
+  resolved "http://registry.npm.taobao.org/clime/download/clime-0.5.9.tgz#e8b9400af20cd86bfefaf9d18e1faf05150312f4"
   dependencies:
-    chalk "^1.1.1"
-    extendable-error "^0.1.2"
+    chalk "^2.1.0"
+    extendable-error "^0.1.5"
     hyphenate "^0.2.1"
-    reflect-metadata "^0.1.3"
-    villa "^0.2.8"
+    parse-messy-time "^2.1.0"
+    reflect-metadata "^0.1.10"
+    strip-ansi "^4.0.0"
+    villa "^0.2.11"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -407,13 +413,14 @@ diff@^3.2.0:
   version "3.4.0"
   resolved "http://registry.npm.taobao.org/diff/download/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
 
-docheat@^0.1.4:
-  version "0.1.4"
-  resolved "http://registry.npm.taobao.org/docheat/download/docheat-0.1.4.tgz#3c28a1f39098091a016f85a53f2bd05945b856d5"
+docheat@^0.1.5:
+  version "0.1.5"
+  resolved "http://registry.npm.taobao.org/docheat/download/docheat-0.1.5.tgz#fb71e69101cce9fbdd5040e49a3f888760289d4a"
   dependencies:
-    clime "^0.4.3"
-    clime-glob "^0.1.1"
+    clime "^0.5.9"
+    clime-glob "^0.2.1"
     source-map-support "^0.4.2"
+    villa "0.3.0"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -441,7 +448,7 @@ extend@~3.0.0:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/extend/download/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
-extendable-error@^0.1.2:
+extendable-error@^0.1.5:
   version "0.1.5"
   resolved "http://registry.npm.taobao.org/extendable-error/download/extendable-error-0.1.5.tgz#122308a7097bc89a263b2c4fbf089c78140e3b6d"
 
@@ -514,7 +521,7 @@ globals@^9.18.0:
   version "9.18.0"
   resolved "http://registry.npm.taobao.org/globals/download/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
 
-globby@^6.0.0:
+globby@^6.1.0:
   version "6.1.0"
   resolved "http://registry.npm.taobao.org/globby/download/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
@@ -942,6 +949,10 @@ optimist@^0.6.1:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
+parse-messy-time@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/parse-messy-time/download/parse-messy-time-2.1.0.tgz#7a14ce7a1c4f65b5ede243399cc056d86bd57ad5"
+
 path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/path-is-absolute/download/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
@@ -976,7 +987,7 @@ qs@~6.3.0:
   version "6.3.2"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
 
-reflect-metadata@^0.1.3:
+reflect-metadata@^0.1.10:
   version "0.1.10"
   resolved "http://registry.npm.taobao.org/reflect-metadata/download/reflect-metadata-0.1.10.tgz#b4f83704416acad89988c9b15635d47e03b9344a"
 
@@ -1090,6 +1101,12 @@ strip-ansi@^3.0.0:
   resolved "http://registry.npm.taobao.org/strip-ansi/download/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
   dependencies:
     ansi-regex "^2.0.0"
+
+strip-ansi@^4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/strip-ansi/download/strip-ansi-4.0.0.tgz#a8479022eb1ac368a871389b635262c505ee368f"
+  dependencies:
+    ansi-regex "^3.0.0"
 
 strip-bom@^2.0.0:
   version "2.0.0"
@@ -1212,7 +1229,11 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-villa@^0.2.8:
+villa@0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/villa/download/villa-0.3.0.tgz#2651a40c64ca1eeec89f15083e53e38f21cf6d14"
+
+villa@^0.2.11:
   version "0.2.11"
   resolved "http://registry.npm.taobao.org/villa/download/villa-0.2.11.tgz#a99a1c0ac01025b7311bb550c1fa7f8e6570692a"
 
